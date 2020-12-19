@@ -2,7 +2,7 @@
   display: block;
   width: 20px;
   height: 18px;
-  background-image: url(./images/like-btn_disabled.svg);
+  background-image: url(../../../images/like-btn_disabled.svg);
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -13,5 +13,5 @@
 }
 
 .like-btn__invisible-checkbox[type="checkbox"]:checked + .like-btn__visible-checkbox {
-  background-image: url(./images/like-btn_checked.svg);
+  background-image: url(../../../images/like-btn_checked.svg);
 } 

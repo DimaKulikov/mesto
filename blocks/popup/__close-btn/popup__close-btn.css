@@ -38,8 +38,9 @@
   }
 }
 
-@media screen and (max-height: 405px) and (max-width:570px) {
+@media screen and (max-height: 405px) and (max-width:360px) {
   .popup__close-btn {
-    background-color: black;
+    background-color: rgba(0, 0, 0, .6);
+    
   }
 }

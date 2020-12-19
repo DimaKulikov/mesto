@@ -149,6 +149,71 @@
   }
 }
 
+.cards {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 282px);
+  column-gap: 17px;
+  row-gap: 20px;
+}
+
+.card {
+  margin: 0;  
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__pic {
+
+}
+
+.card__caption {
+  padding: 0 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.card__title {
+  margin: 25px 0 31px 0;
+  padding: 0 20px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 900;
+  color: black;
+}
+
+.like-btn__invisible-checkbox[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+} 
+
+.like-btn__visible-checkbox {
+  display: block;
+  width: 20px;
+  height: 18px;
+  background-image: url(./images/like-btn_disabled.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.like-btn__visible-checkbox:hover {
+  opacity: .5;
+}
+
+.like-btn__invisible-checkbox[type="checkbox"]:checked + .like-btn__visible-checkbox {
+  background-image: url(./images/like-btn_checked.svg);
+} 
 
 
 

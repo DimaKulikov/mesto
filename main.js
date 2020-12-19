@@ -1,15 +1,15 @@
 // profile DOM elements
-const profile = document.querySelector('.profile')
-const popupShowBtn = profile.querySelector('.profile__edit-btn');
-const profileName = profile.querySelector('.profile__name');
-const subtitle = profile.querySelector('.profile__subtitle');
+let profile = document.querySelector('.profile'),
+  popupShowBtn = profile.querySelector('.profile__edit-btn'),
+  profileName = profile.querySelector('.profile__name'),
+  subtitle = profile.querySelector('.profile__subtitle');
 
 // popup DOM elements
-const popup = document.querySelector('.popup');
-const popupCloseBtn = popup.querySelector('.popup__close-btn');
-const popupSaveBtn = popup.querySelector('.popup__save-btn');
-const nameField = popup.querySelector('.popup__input_type_name');
-const subtitleField = popup.querySelector('.popup__input_type_subtitle');
+let popup = document.querySelector('.popup'),
+  popupCloseBtn = popup.querySelector('.popup__close-btn'),
+  popupSaveBtn = popup.querySelector('.popup__save-btn'),
+  nameField = popup.querySelector('.popup__input_type_name'),
+  subtitleField = popup.querySelector('.popup__input_type_subtitle');
 
 function showPopup() {
   popup.classList.add('popup_opened'); // show popup block

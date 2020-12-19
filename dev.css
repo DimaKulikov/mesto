@@ -1,0 +1,38 @@
+.page {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+}
+
+.page__header {
+  margin: 0 auto;
+}
+
+.page__main-container {
+  margin: 0 auto;
+  max-width: 880px;
+  
+}
+
+.header {
+  max-width: 880px;
+  border-bottom: 1px solid #545454;
+  padding: 45px 0 38px 0;
+  box-sizing: border-box;
+}
+
+.profile {
+  padding: 36px 0 47px 0;
+  display: flex;
+  align-items: center;
+
+}
+
+.profile__avatar {
+  border-radius: 50%;
+  width: 125px;
+}
+
+
+

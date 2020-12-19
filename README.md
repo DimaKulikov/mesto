@@ -17,4 +17,4 @@
 
 **2. Демо**
 
-[Приложение в действии](https://dimakulikov.github.io/mesto/)
+* [Приложение в действии](https://dimakulikov.github.io/mesto/)

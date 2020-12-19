@@ -166,7 +166,9 @@
 }
 
 .card__pic {
-
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
 }
 
 .card__caption {

@@ -34,7 +34,7 @@
 
 @media screen and (max-height: 405px) {
   .popup__close-btn {
-    top: 0
+    top: 0;
   }
 }
 

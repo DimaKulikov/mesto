@@ -31,7 +31,7 @@
 /* Like button */
 
 @import url(../blocks/like-btn/like-btn.css);
-@import url(../blocks/like-btn/__visible-checkbox/like-btn/__visible-checkbox.css);
+@import url(../blocks/like-btn/__visible-checkbox/like-btn__visible-checkbox.css);
 @import url(../blocks/like-btn/__invisible-checkbox/like-btn__invisible-checkbox.css);
 
 /* Popup */

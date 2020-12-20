@@ -11,6 +11,9 @@ let popup = document.querySelector('.popup'),
   nameField = popup.querySelector('.popup__input_type_name'),
   subtitleField = popup.querySelector('.popup__input_type_subtitle');
 
+// like buttons
+let likeButtons = document.querySelectorAll('.card__like-btn'); 
+
 function showPopup() {
   popup.classList.add('popup_opened'); // show popup block
   
@@ -43,6 +46,13 @@ function updateProfile(event) {
   closePopup();
 }
 
+function like(event) {
+  event.target.classList.toggle('card__like-btn_active');
+}
+
 popupShowBtn.addEventListener('click', showPopup);
 popupCloseBtn.addEventListener('click', closePopup);
 profileInputForm.addEventListener('submit', updateProfile);
+likeButtons.forEach(el => {
+  el.addEventListener('click', like);
+})

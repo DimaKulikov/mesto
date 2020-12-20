@@ -8,7 +8,7 @@
   border-radius: 2px;
   outline: none;
   background-color: black;
-  background-image: url(../../../images/add-btn.svg);
+  
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -21,8 +21,9 @@
 
 @media screen and (max-width: 700px) {
   .profile__add-btn {
-    margin: 36px 0 0 0;
+    margin: 34px 0 0 0;
     width: 100%;
     max-width: 282px;
+    background-image: url(../../../images/add-btn-s.svg);
   }
 }

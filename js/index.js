@@ -53,6 +53,6 @@ function like(event) {
 popupShowBtn.addEventListener('click', showPopup);
 popupCloseBtn.addEventListener('click', closePopup);
 profileInputForm.addEventListener('submit', updateProfile);
-likeButtons.forEach(el => {
+likeButtons.forEach(function (el) {
   el.addEventListener('click', like);
 })

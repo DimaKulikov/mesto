@@ -12,7 +12,8 @@
   background-image: url(../../../images/close-btn.png);
   background-position: center;
   background-size: cover;
-  cursor: pointer;  
+  cursor: pointer;
+  transition: top .2s, right .2s, opacity .1s;
 }
 
 .popup__close-btn:hover {
@@ -26,7 +27,7 @@
   }
 }
 
-@media screen and (max-width:360px) {
+@media screen and (max-width:380px) {
   .popup__close-btn {
     right: 0;
   }
@@ -38,7 +39,7 @@
   }
 }
 
-@media screen and (max-height: 405px) and (max-width:360px) {
+@media screen and (max-height: 405px) and (max-width:380px) {
   .popup__close-btn {
     background-color: rgba(0, 0, 0, .6);
     

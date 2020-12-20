@@ -10,6 +10,7 @@
   font-size: 18px;
   color: white;
   cursor: pointer;
+  transition: opacity .1s;
 }
 
 .popup__save-btn:hover {

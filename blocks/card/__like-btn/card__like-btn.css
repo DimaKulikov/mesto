@@ -9,7 +9,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 0;
-  display: block;  
+  display: block;
   cursor: pointer;
   transition: opacity .1s, background-image .2s;
 }

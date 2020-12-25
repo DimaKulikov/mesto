@@ -7,7 +7,7 @@ let profile = document.querySelector('.profile'),
 // popup DOM elements
 let popup = document.querySelector('.popup'),
   popupCloseBtn = popup.querySelector('.popup__close-btn'),
-  profileInputForm = popup.querySelector('form[name=profile]')
+  profileInputForm = popup.querySelector('form[name=profileEditForm]')
   nameField = popup.querySelector('.popup__input_type_name'),
   subtitleField = popup.querySelector('.popup__input_type_subtitle');
 

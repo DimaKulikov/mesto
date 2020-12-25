@@ -11,9 +11,6 @@ let popup = document.querySelector('.popup'),
   nameField = popup.querySelector('.popup__input_type_name'),
   subtitleField = popup.querySelector('.popup__input_type_subtitle');
 
-// like buttons
-let likeButtons = document.querySelectorAll('.card__like-btn'); 
-
 function showPopup() {
   popup.classList.add('popup_opened'); // show popup block
   
@@ -36,23 +33,13 @@ function closePopup() {
 }
 
 function updateProfile(event) {
-  // if either of the input fields are empty do the default submit action
-  if (nameField.value === '' || subtitleField.value === '') {
-    return
-  }
   event.preventDefault();
   profileName.textContent = nameField.value;
   subtitle.textContent = subtitleField.value;
   closePopup();
 }
 
-function like(event) {
-  event.target.classList.toggle('card__like-btn_active');
-}
 
 popupShowBtn.addEventListener('click', showPopup);
 popupCloseBtn.addEventListener('click', closePopup);
 profileInputForm.addEventListener('submit', updateProfile);
-likeButtons.forEach(function (el) {
-  el.addEventListener('click', like);
-})

@@ -45,6 +45,7 @@
 /* Cards */
 
 @import url(../blocks/cards/cards.css);
+@import url(../blocks/cards/__list/cards__list.css);
 
 /* Card */
 

@@ -55,10 +55,16 @@ function renderCard(card) {
   const newCard = template.cloneNode(true);
   const cardPicture = newCard.querySelector('.card__pic');
   const cardTitle = newCard.querySelector('.card__title');
+  const likeBtn = newCard.querySelector('.card__like-btn');
   cardPicture.src = card.link;
   cardPicture.alt = card.name;
   cardTitle.textContent = card.name;
+  likeBtn.addEventListener('click', toggleLike);
   cardsList.append(newCard)
+}
+
+function toggleLike(evt) {
+  evt.target.classList.toggle('card__like-btn_active');
 }
 
 function showPopup() {

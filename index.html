@@ -26,17 +26,18 @@
     </section>
     <section class="cards">
       <ul class="cards__list">
+        <!-- 
         <li class="card"><img class="card__pic" src="./images/cards/berlin.jpg" alt="Берлин">
-        <div class="card__caption">
+          <div class="card__caption">
           <h2 class="card__title">Берлин</h2>
           <button type="button" class="card__like-btn" aria-label="лайк"></button>
-        </div>
+          </div>
         </li>
         <li class="card"><img class="card__pic" src="./images/cards/bali.jpg" alt="Бали">
           <div class="card__caption">
           <h2 class="card__title">Бали</h2>
           <button type="button" class="card__like-btn card__like-btn_active"></button>
-        </div>
+          </div>
         </li>
         <li class="card"><img class="card__pic" src="./images/cards/dubrovnik.jpg" alt="Дубровник">
           <div class="card__caption">
@@ -61,7 +62,8 @@
           <h2 class="card__title">Сорренто</h2>
           <button type="button" class="card__like-btn" aria-label="лайк"></button>
         </div>
-        </li>
+        </li> 
+        -->
       </ul>
     </section>
   </main>
@@ -81,6 +83,15 @@
       </form>
     </div>
   </div>
+  <template id="card-template">
+    <li class="card">
+      <img class="card__pic" src="./images/cards/sorrento.jpg" alt="Сорренто">
+      <div class="card__caption">
+        <h2 class="card__title">Сорренто</h2>
+        <button type="button" class="card__like-btn" aria-label="лайк"></button>
+      </div>
+    </li>
+  </template>
   <script src="./js/index.js"></script>
 </body>
 

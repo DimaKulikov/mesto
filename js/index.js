@@ -66,7 +66,7 @@ function renderCard(name,link) {
   cardPicture.alt = name;
   cardTitle.textContent = name;
   likeBtn.addEventListener('click', toggleLike);
-  cardsList.append(newCard)
+  cardsList.prepend(newCard)
 }
 
 function toggleLike(evt) {

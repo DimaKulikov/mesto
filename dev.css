@@ -1,0 +1,7 @@
+.popup__form {
+    display: none;
+}
+
+.popup__form_shown {
+    display: block;
+}

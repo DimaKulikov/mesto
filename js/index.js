@@ -26,9 +26,14 @@ const initialCards = [
   }
 ];
 
+const settings = {
+  fadeOutDuration: 500,  
+}
+
 // profile elements
 let profile = document.querySelector('.profile'),
-  popupShowBtn = profile.querySelector('.profile__edit-btn'),
+  prfileEditBtn = profile.querySelector('.profile__edit-btn'),
+  palceAddBtn = profile.querySelector('.profile__add-btn'),
   profileName = profile.querySelector('.profile__name'),
   subtitle = profile.querySelector('.profile__subtitle');
 
@@ -38,17 +43,18 @@ const cardsList = document.querySelector('.cards__list'),
 
 // popup elements
 const popup = document.querySelector('.popup'),
-  popupCloseBtn = popup.querySelector('.popup__close-btn'),
-  profileInputForm = popup.querySelector('form[name=profileEditForm]')
-  nameField = popup.querySelector('.popup__input_type_name'),
-  subtitleField = popup.querySelector('.popup__input_type_subtitle');
-
+  popupCloseBtn = popup.querySelector('.popup__close-btn');
+const profileEditForm = popup.querySelector('form[name=profileEditForm]'),
+  profileNameInput = profileEditForm.querySelector('input[name=profileNameInput]'),
+  profileSubtitleInput = profileEditForm.querySelector('input[name=profileSubtitleInput]');
+const placeAddForm = popup.querySelector('form[name=placeAddForm]'),
+  placeNameInput = placeAddForm.querySelector('input[name=placeNameInput]'),
+  placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]');
 
 // render hardcoded cards on page load
 initialCards.forEach(el => {
   renderCard(el);
-})
-
+});
 
 // Functions 
 function renderCard(card) {
@@ -67,15 +73,29 @@ function toggleLike(evt) {
   evt.target.classList.toggle('card__like-btn_active');
 }
 
-function showPopup() {
+function showPopup(evt) {
+  if (evt.target === prfileEditBtn){
+    showProfileEditForm();
+  }
+  if (evt.target === palceAddBtn) {
+    showPlaceAddForm();
+  }
   popup.classList.add('popup_opened'); // show popup block
-  
-  // fill the input fields with current name and title
-  nameField.value = profileName.textContent;
-  subtitleField.value = subtitle.textContent;  
-  nameField.focus();
   document.addEventListener('keydown', keyListener); 
+
+  function showProfileEditForm() {
+    profileEditForm.classList.add('popup__form_shown');
+    profileNameInput.value = profileName.textContent;
+    profileSubtitleInput.value = subtitle.textContent;  
+    profileNameInput.focus();
+  }
+  
+  function showPlaceAddForm() {
+    placeAddForm.classList.add('popup__form_shown');
+  }
 }
+
+
 
 function keyListener(event) {
   if (event.key === 'Escape') {
@@ -86,16 +106,29 @@ function keyListener(event) {
 
 function closePopup() {
   popup.classList.remove('popup_opened');
+  setTimeout(() => {
+    profileEditForm.classList.remove('popup__form_shown');
+    placeAddForm.classList.remove('popup__form_shown');
+  }, settings.fadeOutDuration)
+ 
 }
 
-function updateProfile(event) {
-  event.preventDefault();
-  profileName.textContent = nameField.value;
-  subtitle.textContent = subtitleField.value;
+function submitProfileEditForm(evt) {
+  evt.preventDefault();
+  profileName.textContent = profileNameInput.value;
+  subtitle.textContent = profileSubtitleInput.value;
+  closePopup();
+}
+
+function submitPlaceAddForm(evt) {
+  evt.preventDefault();
+  renderCard({name: placeNameInput.value, link: placeImageInput.value})
   closePopup();
 }
 
 // Event listeners
-popupShowBtn.addEventListener('click', showPopup);
+prfileEditBtn.addEventListener('click', showPopup);
+palceAddBtn.addEventListener('click', showPopup);
 popupCloseBtn.addEventListener('click', closePopup);
-profileInputForm.addEventListener('submit', updateProfile);
+profileEditForm.addEventListener('submit', submitProfileEditForm);
+placeAddForm.addEventListener('submit', submitPlaceAddForm);

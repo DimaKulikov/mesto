@@ -53,18 +53,18 @@ const placeAddForm = popup.querySelector('form[name=placeAddForm]'),
 
 // render hardcoded cards on page load
 initialCards.forEach(el => {
-  renderCard(el);
+  renderCard(el.name, el.link);
 });
 
 // Functions 
-function renderCard(card) {
+function renderCard(name,link) {
   const newCard = template.cloneNode(true);
   const cardPicture = newCard.querySelector('.card__pic');
   const cardTitle = newCard.querySelector('.card__title');
   const likeBtn = newCard.querySelector('.card__like-btn');
-  cardPicture.src = card.link;
-  cardPicture.alt = card.name;
-  cardTitle.textContent = card.name;
+  cardPicture.src = link;
+  cardPicture.alt = name;
+  cardTitle.textContent = name;
   likeBtn.addEventListener('click', toggleLike);
   cardsList.append(newCard)
 }
@@ -122,7 +122,7 @@ function submitProfileEditForm(evt) {
 
 function submitPlaceAddForm(evt) {
   evt.preventDefault();
-  renderCard({name: placeNameInput.value, link: placeImageInput.value})
+  renderCard(placeNameInput.value, placeImageInput.value)
   closePopup();
 }
 

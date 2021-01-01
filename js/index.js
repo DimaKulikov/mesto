@@ -86,7 +86,7 @@ function showPopup(evt) {
     showPlaceAddForm();
   }
   popup.classList.add('popup_opened'); // show popup block
-  document.addEventListener('keydown', keyListener); 
+  document.addEventListener('keydown', listenToEsc); 
 
   function showProfileEditForm() {
     profileEditForm.classList.add('popup__form_shown');
@@ -100,10 +100,10 @@ function showPopup(evt) {
   }
 }
 
-function keyListener(event) {
+function listenToEsc(event) {
   if (event.key === 'Escape') {
     closePopup();
-    document.removeEventListener('keydown', keyListener);
+    document.removeEventListener('keydown', listenToEsc);
   }
 }
 

@@ -62,10 +62,12 @@ function renderCard(name,link) {
   const cardPicture = newCard.querySelector('.card__pic');
   const cardTitle = newCard.querySelector('.card__title');
   const likeBtn = newCard.querySelector('.card__like-btn');
+  const removeBtn = newCard.querySelector('.card__remove-btn');
   cardPicture.src = link;
   cardPicture.alt = name;
   cardTitle.textContent = name;
   likeBtn.addEventListener('click', toggleLike);
+  removeBtn.addEventListener('click', removeCard);
   cardsList.prepend(newCard)
 }
 
@@ -95,8 +97,6 @@ function showPopup(evt) {
   }
 }
 
-
-
 function keyListener(event) {
   if (event.key === 'Escape') {
     closePopup();
@@ -124,6 +124,10 @@ function submitPlaceAddForm(evt) {
   evt.preventDefault();
   renderCard(placeNameInput.value, placeImageInput.value)
   closePopup();
+}
+
+function removeCard (evt) {
+  evt.target.parentNode.remove();
 }
 
 // Event listeners

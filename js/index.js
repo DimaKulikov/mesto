@@ -51,6 +51,8 @@ const placeAddForm = popup.querySelector('form[name=placeAddForm]'),
   placeNameInput = placeAddForm.querySelector('input[name=placeNameInput]'),
   placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]');
 
+  
+const lightbox = document.querySelector('.lightbox');
 // render hardcoded cards on page load
 initialCards.forEach(el => {
   renderCard(el.name, el.link);
@@ -68,6 +70,7 @@ function renderCard(name,link) {
   cardTitle.textContent = name;
   likeBtn.addEventListener('click', toggleLike);
   removeBtn.addEventListener('click', removeCard);
+  cardPicture.addEventListener('click', showLightbox);
   cardsList.prepend(newCard)
 }
 
@@ -128,6 +131,21 @@ function submitPlaceAddForm(evt) {
 
 function removeCard (evt) {
   evt.target.parentNode.remove();
+}
+
+function showLightbox (evt) {
+  lightbox.classList.add('lightbox_opened');
+  const lightboxImage = lightbox.querySelector('.lightbox__image');
+  const closeBtn = lightbox.querySelector('.lightbox__close-btn');
+  const lightboxTitle = lightbox.querySelector('.lightbox__subtitle');
+  const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;
+  lightboxTitle.textContent = sourceTitle;
+  lightboxImage.src = evt.target.src;
+  closeBtn.addEventListener('click', closeLightbox);
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('lightbox_opened');
 }
 
 // Event listeners

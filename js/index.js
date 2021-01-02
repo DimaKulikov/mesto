@@ -134,7 +134,10 @@ function submitPlaceAddForm(evt) {
 }
 
 function removeCard (evt) {
-  evt.target.parentNode.remove();
+  evt.target.parentNode.classList.add('card_removed');
+  setTimeout(()=>{
+    evt.target.parentNode.remove();
+  }, settings.fadeOutDuration);  
 }
 
 function showLightbox (evt) {

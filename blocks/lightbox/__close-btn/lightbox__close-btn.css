@@ -1,0 +1,35 @@
+.lightbox__close-btn {
+  position: absolute;
+  top: -37px;
+  right: -37px;
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border: none;
+  outline: none;
+  background: none;
+  background-image: url(../../../images/close-btn.svg);
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  transition: top .2s, right .2s, width .2s, height .2s, opacity .1s;
+}
+
+.lightbox__close-btn:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width:570px) {
+  .lightbox__close-btn {
+    right: -28px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media screen and (max-width:380px) {
+  .lightbox__close-btn {
+    right: 0;
+  }
+}

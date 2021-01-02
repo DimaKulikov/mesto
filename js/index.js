@@ -31,28 +31,32 @@ const settings = {
 }
 
 // profile elements
-let profile = document.querySelector('.profile'),
-  prfileEditBtn = profile.querySelector('.profile__edit-btn'),
-  palceAddBtn = profile.querySelector('.profile__add-btn'),
-  profileName = profile.querySelector('.profile__name'),
-  subtitle = profile.querySelector('.profile__subtitle');
+const profile = document.querySelector('.profile');
+const prfileEditBtn = profile.querySelector('.profile__edit-btn');
+const palceAddBtn = profile.querySelector('.profile__add-btn');
+const profileName = profile.querySelector('.profile__name');
+const subtitle = profile.querySelector('.profile__subtitle');
 
-//list of cards elements
-const cardsList = document.querySelector('.cards__list'),
-  template = document.querySelector('#card-template').content;
+//cards elements
+const cardsList = document.querySelector('.cards__list');
+const template = document.querySelector('#card-template').content;
 
 // popup elements
-const popup = document.querySelector('.popup'),
-  popupCloseBtn = popup.querySelector('.popup__close-btn');
-const profileEditForm = popup.querySelector('form[name=profileEditForm]'),
-  profileNameInput = profileEditForm.querySelector('input[name=profileNameInput]'),
-  profileSubtitleInput = profileEditForm.querySelector('input[name=profileSubtitleInput]');
-const placeAddForm = popup.querySelector('form[name=placeAddForm]'),
-  placeNameInput = placeAddForm.querySelector('input[name=placeNameInput]'),
-  placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]');
+const popup = document.querySelector('.popup');
+const popupCloseBtn = popup.querySelector('.popup__close-btn');
+const profileEditForm = popup.querySelector('form[name=profileEditForm]');
+const profileNameInput = profileEditForm.querySelector('input[name=profileNameInput]');
+const profileSubtitleInput = profileEditForm.querySelector('input[name=profileSubtitleInput]');
+const placeAddForm = popup.querySelector('form[name=placeAddForm]');
+const placeNameInput = placeAddForm.querySelector('input[name=placeNameInput]');
+const placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]');
 
-  
+//lightbox elements
 const lightbox = document.querySelector('.lightbox');
+const lightboxImage = lightbox.querySelector('.lightbox__image');
+const closeBtn = lightbox.querySelector('.lightbox__close-btn');
+const lightboxTitle = lightbox.querySelector('.lightbox__subtitle');
+
 // render hardcoded cards on page load
 initialCards.forEach(el => {
   renderCard(el.name, el.link);
@@ -71,7 +75,7 @@ function renderCard(name,link) {
   likeBtn.addEventListener('click', toggleLike);
   removeBtn.addEventListener('click', removeCard);
   cardPicture.addEventListener('click', showLightbox);
-  cardsList.prepend(newCard)
+  cardsList.prepend(newCard);
 }
 
 function toggleLike(evt) {
@@ -85,7 +89,7 @@ function showPopup(evt) {
   if (evt.target === palceAddBtn) {
     showPlaceAddForm();
   }
-  popup.classList.add('popup_opened'); // show popup block
+  popup.classList.add('popup_opened');
   document.addEventListener('keydown', listenToEsc); 
 
   function showProfileEditForm() {
@@ -112,7 +116,7 @@ function closePopup() {
   setTimeout(() => {
     profileEditForm.classList.remove('popup__form_shown');
     placeAddForm.classList.remove('popup__form_shown');
-  }, settings.fadeOutDuration)
+  }, settings.fadeOutDuration);
  
 }
 
@@ -134,11 +138,8 @@ function removeCard (evt) {
 }
 
 function showLightbox (evt) {
-  lightbox.classList.add('lightbox_opened');
-  const lightboxImage = lightbox.querySelector('.lightbox__image');
-  const closeBtn = lightbox.querySelector('.lightbox__close-btn');
-  const lightboxTitle = lightbox.querySelector('.lightbox__subtitle');
   const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;
+  lightbox.classList.add('lightbox_opened');
   lightboxTitle.textContent = sourceTitle;
   lightboxImage.src = evt.target.src;
   closeBtn.addEventListener('click', closeLightbox);

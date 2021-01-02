@@ -143,8 +143,9 @@ function removeCard (evt) {
 function showLightbox (evt) {
   const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;
   lightbox.classList.add('lightbox_opened');
-  lightboxTitle.textContent = sourceTitle;
   lightboxImage.src = evt.target.src;
+  lightboxImage.alt = sourceTitle;
+  lightboxTitle.textContent = sourceTitle;
   closeBtn.addEventListener('click', closeLightbox);
 }
 

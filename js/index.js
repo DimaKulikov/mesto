@@ -55,7 +55,7 @@ const placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]'
 const lightbox = document.querySelector('.lightbox');
 const lightboxContainer = lightbox.querySelector('.lightbox__container');
 const closeBtn = lightbox.querySelector('.lightbox__close-btn');
-const lightboxTitle = lightbox.querySelector('.lightbox__subtitle');
+const lightboxSubtitle = lightbox.querySelector('.lightbox__subtitle');
 
 // render hardcoded cards on page load
 initialCards.forEach(el => {
@@ -97,8 +97,7 @@ function showPopup(evt) {
     profileNameInput.value = profileName.textContent;
     profileSubtitleInput.value = subtitle.textContent;  
     profileNameInput.focus();
-  }
-  
+  }  
   function showPlaceAddForm() {
     placeAddForm.classList.add('popup__form_shown');
   }
@@ -141,18 +140,18 @@ function removeCard (evt) {
 }
 
 function showLightbox (evt) {
-  const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;
-  lightbox.classList.add('lightbox_opened');
+  const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;  
+  const previousImage = lightbox.querySelector('.lightbox__image');
   const lightboxImage = document.createElement('img');
   lightboxImage.classList.add('lightbox__image');
   lightboxImage.src = evt.target.src;
   lightboxImage.alt = sourceTitle;
-  lightboxTitle.textContent = sourceTitle;
-  const prevImage = lightbox.querySelector('.lightbox__image');
-  if(prevImage) {
-    prevImage.remove();
+  lightboxSubtitle.textContent = sourceTitle;
+  if(previousImage) {
+    previousImage.remove();
   }
   lightboxContainer.append(lightboxImage);
+  lightbox.classList.add('lightbox_opened');
   closeBtn.addEventListener('click', closeLightbox);
 }
 

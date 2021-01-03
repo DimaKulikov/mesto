@@ -32,10 +32,10 @@
   <footer class="footer page__section">
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_form_profile-edit">
     <div class="popup__container">
       <button type="button" class="popup__close-btn" aria-label="закрыть"></button>      
-      <form name="profileEditForm" class="popup__form">
+      <form name="profileEditForm">
         <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" class="popup__input" name="profileNameInput" placeholder="Имя или заголовок"
           required autocomplete="off">
@@ -43,7 +43,12 @@
           required autocomplete="off">
         <input type="submit" class="popup__save-btn" value="Сохранить">
       </form>
-      <form name="placeAddForm"  class="popup__form">
+    </div>
+  </div>
+  <div class="popup popup_form_place-add">
+    <div class="popup__container">
+      <button type="button" class="popup__close-btn" aria-label="закрыть"></button>      
+      <form name="placeAddForm">
         <h2 class="popup__title">Новое место</h2>
         <input type="text" class="popup__input" name="placeNameInput" placeholder="Название"
           required autocomplete="off">

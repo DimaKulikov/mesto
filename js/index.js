@@ -27,7 +27,7 @@ const initialCards = [
 ];
 
 const settings = {
-  fadeOutDuration: 500,  
+  fadeOutDuration: 300,  
 }
 
 // profile elements
@@ -53,7 +53,7 @@ const placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]'
 
 //lightbox elements
 const lightbox = document.querySelector('.lightbox');
-const lightboxImage = lightbox.querySelector('.lightbox__image');
+const lightboxContainer = lightbox.querySelector('.lightbox__container');
 const closeBtn = lightbox.querySelector('.lightbox__close-btn');
 const lightboxTitle = lightbox.querySelector('.lightbox__subtitle');
 
@@ -143,9 +143,16 @@ function removeCard (evt) {
 function showLightbox (evt) {
   const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;
   lightbox.classList.add('lightbox_opened');
+  const lightboxImage = document.createElement('img');
+  lightboxImage.classList.add('lightbox__image');
   lightboxImage.src = evt.target.src;
   lightboxImage.alt = sourceTitle;
   lightboxTitle.textContent = sourceTitle;
+  const prevImage = lightbox.querySelector('.lightbox__image');
+  if(prevImage) {
+    prevImage.remove();
+  }
+  lightboxContainer.append(lightboxImage);
   closeBtn.addEventListener('click', closeLightbox);
 }
 

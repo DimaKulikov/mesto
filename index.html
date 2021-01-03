@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
-  <link rel="stylesheet" href="dev.css">
 </head>
 
 <body class="page">
@@ -27,44 +26,6 @@
     </section>
     <section class="cards">
       <ul class="cards__list">
-        <!-- 
-        <li class="card"><img class="card__pic" src="./images/cards/berlin.jpg" alt="Берлин">
-          <div class="card__caption">
-          <h2 class="card__title">Берлин</h2>
-          <button type="button" class="card__like-btn" aria-label="лайк"></button>
-          </div>
-        </li>
-        <li class="card"><img class="card__pic" src="./images/cards/bali.jpg" alt="Бали">
-          <div class="card__caption">
-          <h2 class="card__title">Бали</h2>
-          <button type="button" class="card__like-btn card__like-btn_active"></button>
-          </div>
-        </li>
-        <li class="card"><img class="card__pic" src="./images/cards/dubrovnik.jpg" alt="Дубровник">
-          <div class="card__caption">
-          <h2 class="card__title">Дубровник</h2>
-          <button type="button" class="card__like-btn" aria-label="лайк"></button>
-        </div>
-        </li>
-        <li class="card"><img class="card__pic" src="./images/cards/lembongan.jpg" alt="Нуса-Лембонган">
-          <div class="card__caption">
-          <h2 class="card__title">Нуса-Лембонган</h2>
-          <button type="button" class="card__like-btn" aria-label="лайк"></button>
-        </div>
-        </li>
-        <li class="card"><img class="card__pic" src="./images/cards/palo-duro.jpg" alt="Пало Дуро">
-          <div class="card__caption">
-          <h2 class="card__title">Пало Дуро</h2>
-          <button type="button" class="card__like-btn" aria-label="лайк"></button>
-        </div>
-        </li>
-        <li class="card"><img class="card__pic" src="./images/cards/sorrento.jpg" alt="Сорренто">
-          <div class="card__caption">
-          <h2 class="card__title">Сорренто</h2>
-          <button type="button" class="card__like-btn" aria-label="лайк"></button>
-        </div>
-        </li> 
-        -->
       </ul>
     </section>
   </main>
@@ -92,22 +53,22 @@
       </form>
     </div>
   </div>
-  <template id="card-template">
-    <li class="card">
-      <button class="card__remove-btn"></button>
-      <img class="card__pic" src="./images/cards/sorrento.jpg" alt="Сорренто">
-      <div class="card__caption">
-        <h2 class="card__title">Сорренто</h2>
-        <button type="button" class="card__like-btn" aria-label="лайк"></button>
-      </div>
-    </li>
-  </template>
   <div class="lightbox">
     <div class="lightbox__container">
       <button class="lightbox__close-btn"></button>
       <p class="lightbox__subtitle"></p>
     </div>
   </div>
+  <template id="card-template">
+    <li class="card">
+      <button class="card__remove-btn"></button>
+      <img class="card__pic" src="" alt="">
+      <div class="card__caption">
+        <h2 class="card__title"></h2>
+        <button type="button" class="card__like-btn" aria-label="лайк"></button>
+      </div>
+    </li>
+  </template>
   <script src="./js/index.js"></script>
 </body>
 

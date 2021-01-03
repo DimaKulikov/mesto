@@ -141,16 +141,10 @@ function removeCard (evt) {
 
 function showLightbox (evt) {
   const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;  
-  const previousImage = lightbox.querySelector('.lightbox__image');
-  const lightboxImage = document.createElement('img');
-  lightboxImage.classList.add('lightbox__image');
+  const lightboxImage = lightbox.querySelector('.lightbox__image');
   lightboxImage.src = evt.target.src;
   lightboxImage.alt = sourceTitle;
   lightboxSubtitle.textContent = sourceTitle;
-  if(previousImage) {
-    previousImage.remove();
-  }
-  lightboxContainer.append(lightboxImage);
   lightbox.classList.add('lightbox_opened');
   closeBtn.addEventListener('click', closeLightbox);
 }

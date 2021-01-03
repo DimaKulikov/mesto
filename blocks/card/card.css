@@ -6,5 +6,4 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: opacity 500ms;
 }

@@ -67,6 +67,11 @@ initialCards.forEach(el => {
 
 // Functions 
 function renderCard(name,link) {
+  const newCard = createCard(name,link);
+  cardsList.prepend(newCard);
+}
+
+function createCard(name,link){
   const newCard = template.cloneNode(true);
   const cardPicture = newCard.querySelector('.card__pic');
   const cardTitle = newCard.querySelector('.card__title');
@@ -78,7 +83,7 @@ function renderCard(name,link) {
   likeBtn.addEventListener('click', toggleLike);
   removeBtn.addEventListener('click', removeCard);
   cardPicture.addEventListener('click', showLightbox);
-  cardsList.prepend(newCard);
+  return newCard;
 }
 
 function toggleLike(evt) {

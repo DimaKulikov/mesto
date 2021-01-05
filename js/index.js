@@ -32,8 +32,6 @@ const settings = {
 
 // profile elements
 const profile = document.querySelector('.profile');
-const prfileEditBtn = profile.querySelector('.profile__edit-btn');
-const palceAddBtn = profile.querySelector('.profile__add-btn');
 const profileName = profile.querySelector('.profile__name');
 const subtitle = profile.querySelector('.profile__subtitle');
 

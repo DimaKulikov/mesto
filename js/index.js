@@ -138,6 +138,11 @@ function showImagePopup (name,link) {
   imagePopupImage.alt = name;
   imagePopupSubtitle.textContent = name;
 }
+
+// Submit listeners
+profileEditForm.addEventListener('submit', submitProfileEditForm);
+placeAddForm.addEventListener('submit', submitPlaceAddForm);
+
 document.addEventListener('click', function globalClickListener(evt){
   if (evt.target.classList.contains('popup__close-btn')){
     const openedPopup = document.querySelector('.popup_opened');

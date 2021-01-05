@@ -80,7 +80,9 @@ function createCard(name,link){
   cardTitle.textContent = name;
   likeBtn.addEventListener('click', toggleLike);
   removeBtn.addEventListener('click', removeCard);
-  cardPicture.addEventListener('click', showLightbox);
+  cardPicture.addEventListener('click', () => {
+    showImagePopup(name, link);
+  });
   return newCard;
 }
 

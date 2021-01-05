@@ -144,12 +144,12 @@ document.addEventListener('click', function globalClickListener(evt){
   if (evt.target.classList.contains('popup__close-btn')){
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
-}
+  }
 
   if (evt.target.classList.contains('profile__edit-btn')){
     showProfileEditPopup();
     
-}
+  }
 
   if (evt.target.classList.contains('profile__add-btn')){
     showPlaceAddPopup();

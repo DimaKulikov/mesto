@@ -157,8 +157,8 @@ document.addEventListener('click', function globalClickListener(evt){
 })
 
 document.addEventListener('keydown', function globalKeyListener(evt){
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened');
+  const openedPopup = document.querySelector('.popup_opened');
+  if (openedPopup && evt.key === 'Escape') {    
     closePopup(openedPopup);
   }
 })

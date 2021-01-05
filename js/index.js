@@ -132,6 +132,12 @@ function removeCard (evt) {
   }, settings.cardFadeOutDuration);  
 }
 
+function showImagePopup (name,link) {
+  openPopup(imagePopup);
+  imagePopupImage.src = link;
+  imagePopupImage.alt = name;
+  imagePopupSubtitle.textContent = name;
+}
 document.addEventListener('click', function globalClickListener(evt){
   if (evt.target.classList.contains('popup__close-btn')){
     const openedPopup = document.querySelector('.popup_opened');

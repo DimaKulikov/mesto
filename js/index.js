@@ -141,7 +141,7 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
 });
 
 // Click listener
-document.addEventListener('click', function globalClickListener(evt){
+document.addEventListener('click', function globalClickHandler(evt){
   if (evt.target.classList.contains('popup__close-btn')){
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -158,7 +158,7 @@ document.addEventListener('click', function globalClickListener(evt){
 })
 
 // Key listeners
-document.addEventListener('keydown', function globalKeyListener(evt){
+document.addEventListener('keydown', function globalKeydownHandler(evt){
   const openedPopup = document.querySelector('.popup_opened');
   if (openedPopup && evt.key === 'Escape') {    
     closePopup(openedPopup);

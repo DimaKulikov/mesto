@@ -158,3 +158,10 @@ document.addEventListener('click', function globalClickListener(evt){
     showPlaceAddPopup();
   }
 })
+
+document.addEventListener('keydown', function globalKeyListener(evt){
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+})

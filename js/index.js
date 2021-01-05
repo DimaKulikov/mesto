@@ -137,23 +137,18 @@ function removeCard (evt) {
   }, settings.cardFadeOutDuration);  
 }
 
-function showLightbox (evt) {
-  const sourceTitle = evt.target.parentNode.querySelector('.card__title').textContent;  
-  const lightboxImage = lightbox.querySelector('.lightbox__image');
-  lightboxImage.src = evt.target.src;
-  lightboxImage.alt = sourceTitle;
-  lightboxSubtitle.textContent = sourceTitle;
-  lightbox.classList.add('lightbox_opened');
-  closeBtn.addEventListener('click', closeLightbox);
+document.addEventListener('click', function globalClickListener(evt){
+  if (evt.target.classList.contains('popup__close-btn')){
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
 }
 
-function closeLightbox() {
-  lightbox.classList.remove('lightbox_opened');
+  if (evt.target.classList.contains('profile__edit-btn')){
+    showProfileEditPopup();
+    
 }
 
-// Event listeners
-prfileEditBtn.addEventListener('click', showProfileEditPopup);
-palceAddBtn.addEventListener('click', showPlaceAddPopup);
-popupCloseBtns.forEach(btn => btn.addEventListener('click', closePopups));
-profileEditForm.addEventListener('submit', submitProfileEditForm);
-placeAddForm.addEventListener('submit', submitPlaceAddForm);
+  if (evt.target.classList.contains('profile__add-btn')){
+    showPlaceAddPopup();
+  }
+})

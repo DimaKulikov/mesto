@@ -40,12 +40,14 @@ const cardsList = document.querySelector('.cards__list');
 const template = document.querySelector('#card-template').content;
 
 // profile edit popup elements
+const profileEditBtn = document.querySelector('.profile__edit-btn');
 const profileEditPopup = document.querySelector('.popup_profile-edit');
 const profileEditForm = profileEditPopup.querySelector('form[name=profileEditForm]');
 const profileNameInput = profileEditPopup.querySelector('input[name=profileNameInput]');
 const profileSubtitleInput = profileEditPopup.querySelector('input[name=profileSubtitleInput]');
 
 // place add popup elements
+const placeAddBtn = document.querySelector('.profile__add-btn');
 const placeAddPopup = document.querySelector('.popup_place-add');
 const placeAddForm = placeAddPopup.querySelector('form[name=placeAddForm]');
 const placeNameInput = placeAddPopup.querySelector('input[name=placeNameInput]');
@@ -55,6 +57,9 @@ const placeImageInput = placeAddPopup.querySelector('input[name=placeImageInput]
 const imagePopup = document.querySelector('.popup_image');
 const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupSubtitle = imagePopup.querySelector('.popup__subtitle');
+
+//popup close buttons
+const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
 
 // render hardcoded cards on page load
 initialCards.forEach(el => {
@@ -142,32 +147,15 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
   closePopup(placeAddPopup);
 });
 
-// Click listener
-document.addEventListener('click', function globalClickHandler(evt){
- /* 
-Извините, не знаю корректно ли здесь писать Вам комментарий. Хотел уточнить, почему такой вариант закрытия попапов не универсален, он срабатывает от любой кнопки с классом "popup__close-btn", находит текущий открытый попап "popup_opened" и закрывает его. Если нужно я исправлю, попытки сдачи ещё есть)
-
-Ваш комментарий:
-сделайте так, как я советовал Вам прошлый раз. Находите все кнопки Крестик и навешиваете на каждый обработчик, который ищет ближайший Попап и закрывает его 
-popupCloseBtns.forEach(btn => btn.addEventListener('click', () => {
-closePopup(btn.closest('.popup'))
-}));
-а Вы сделали только под 3 попапа. Если добавить еще 10 шт - то куда кода нужно прописывать опять
-*/
-  if (evt.target.classList.contains('popup__close-btn')){
-    const openedPopup = document.querySelector('.popup_opened');
+// Click listeners
+profileEditBtn.addEventListener('click', showProfileEditPopup);
+placeAddBtn.addEventListener('click', showPlaceAddPopup);
+popupCloseBtns.forEach(btn => {
+  btn.addEventListener('click', () => {    
+    const openedPopup = btn.closest('.popup');
     closePopup(openedPopup);
-  }
-
-  if (evt.target.classList.contains('profile__edit-btn')){
-    showProfileEditPopup();
-    
-  }
-
-  if (evt.target.classList.contains('profile__add-btn')){
-    showPlaceAddPopup();
-  }
-})
+  })
+});
 
 // Key listeners
 function listenToEsc(event) {

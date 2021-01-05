@@ -91,7 +91,7 @@ function toggleLike(evt) {
 }
 
 function showProfileEditPopup() {
-  profileEditPopup.classList.add('popup_opened'); 
+  openPopup(profileEditPopup);
   profileNameInput.value = profileName.textContent;
   profileSubtitleInput.value = subtitle.textContent;  
   profileNameInput.focus();  
@@ -103,11 +103,8 @@ function showPlaceAddPopup() {
   document.addEventListener('keydown', listenToEsc);
 }
 
-function listenToEsc(event) {
-  if (event.key === 'Escape') {
-    closePopup();
-    document.removeEventListener('keydown', listenToEsc);
-  }
+function openPopup(popup) {
+  popup.classList.add('popup_opened');  
 }
 
 function closePopups() {

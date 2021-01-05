@@ -42,13 +42,13 @@ const cardsList = document.querySelector('.cards__list');
 const template = document.querySelector('#card-template').content;
 
 // profile edit popup elements
-const profileEditPopup = document.querySelector('.popup_form_profile-edit');
+const profileEditPopup = document.querySelector('.popup_profile-edit');
 const profileEditForm = profileEditPopup.querySelector('form[name=profileEditForm]');
 const profileNameInput = profileEditPopup.querySelector('input[name=profileNameInput]');
 const profileSubtitleInput = profileEditPopup.querySelector('input[name=profileSubtitleInput]');
 
 // place add popup elements
-const placeAddPopup = document.querySelector('.popup_form_place-add');
+const placeAddPopup = document.querySelector('.popup_place-add');
 const placeAddForm = placeAddPopup.querySelector('form[name=placeAddForm]');
 const placeNameInput = placeAddPopup.querySelector('input[name=placeNameInput]');
 const placeImageInput = placeAddPopup.querySelector('input[name=placeImageInput]');

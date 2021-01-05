@@ -53,12 +53,10 @@ const placeAddForm = placeAddPopup.querySelector('form[name=placeAddForm]');
 const placeNameInput = placeAddPopup.querySelector('input[name=placeNameInput]');
 const placeImageInput = placeAddPopup.querySelector('input[name=placeImageInput]');
 
-const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
-//lightbox elements
-const lightbox = document.querySelector('.lightbox');
-const lightboxContainer = lightbox.querySelector('.lightbox__container');
-const closeBtn = lightbox.querySelector('.lightbox__close-btn');
-const lightboxSubtitle = lightbox.querySelector('.lightbox__subtitle');
+//image popup elements
+const imagePopup = document.querySelector('.popup_image');
+const imagePopupImage = imagePopup.querySelector('.popup__image');
+const imagePopupSubtitle = imagePopup.querySelector('.popup__subtitle');
 
 // render hardcoded cards on page load
 initialCards.forEach(el => {

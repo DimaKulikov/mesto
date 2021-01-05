@@ -144,6 +144,16 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
 
 // Click listener
 document.addEventListener('click', function globalClickHandler(evt){
+ /* 
+Извините, не знаю корректно ли здесь писать Вам комментарий. Хотел уточнить, почему такой вариант закрытия попапов не универсален, он срабатывает от любой кнопки с классом "popup__close-btn", находит текущий открытый попап "popup_opened" и закрывает его. Если нужно я исправлю, попытки сдачи ещё есть)
+
+Ваш комментарий:
+сделайте так, как я советовал Вам прошлый раз. Находите все кнопки Крестик и навешиваете на каждый обработчик, который ищет ближайший Попап и закрывает его 
+popupCloseBtns.forEach(btn => btn.addEventListener('click', () => {
+closePopup(btn.closest('.popup'))
+}));
+а Вы сделали только под 3 попапа. Если добавить еще 10 шт - то куда кода нужно прописывать опять
+*/
   if (evt.target.classList.contains('popup__close-btn')){
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);

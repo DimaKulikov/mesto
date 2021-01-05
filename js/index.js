@@ -99,10 +99,12 @@ function removeCard (evt) {
 // Universal popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');  
+  document.addEventListener('keydown', listenToEsc);
 }
 
 function closePopup(popup) {
-  popup.classList.remove('popup_opened');  
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', listenToEsc);  
 }
 
 // Single popups
@@ -158,9 +160,10 @@ document.addEventListener('click', function globalClickHandler(evt){
 })
 
 // Key listeners
-document.addEventListener('keydown', function globalKeydownHandler(evt){
-  const openedPopup = document.querySelector('.popup_opened');
-  if (openedPopup && evt.key === 'Escape') {    
+function listenToEsc(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
-})
+}
+

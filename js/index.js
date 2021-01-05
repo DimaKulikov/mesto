@@ -99,24 +99,22 @@ function showProfileEditPopup() {
 }
 
 function showPlaceAddPopup() {
-  placeAddPopup.classList.add('popup_opened'); 
-  document.addEventListener('keydown', listenToEsc);
+  openPopup(placeAddPopup);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');  
 }
 
-function closePopups() {
-  profileEditPopup.classList.remove('popup_opened');
-  placeAddPopup.classList.remove('popup_opened');
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');  
 }
 
 function submitProfileEditForm(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   subtitle.textContent = profileSubtitleInput.value;
-  closePopups();
+  closePopup(profileEditPopup);
 }
 
 function submitPlaceAddForm(evt) {
@@ -124,7 +122,7 @@ function submitPlaceAddForm(evt) {
   renderCard(placeNameInput.value, placeImageInput.value)
   placeNameInput.value = '';
   placeImageInput.value = '';
-  closePopups();
+  closePopup(placeAddPopup);
 }
 
 function removeCard (evt) {

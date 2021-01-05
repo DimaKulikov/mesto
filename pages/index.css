@@ -56,21 +56,18 @@
 /* Popup */
 
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_image/popup_image.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-@import url(../blocks/popup/__close-btn/popup__close-btn.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__close-btn/popup__close-btn.css);
+@import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__save-btn/popup__save-btn.css);
 @import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__subtitle/popup__subtitle.css);
 
-/* Lightbox */
 
-@import url(../blocks/lightbox/lightbox.css);
-@import url(../blocks/lightbox/_opened/lightbox_opened.css);
-@import url(../blocks/lightbox/__container/lightbox__container.css);
-@import url(../blocks/lightbox/__close-btn/lightbox__close-btn.css);
-@import url(../blocks/lightbox/__image/lightbox__image.css);
-@import url(../blocks/lightbox/__subtitle/lightbox__subtitle.css);
 
 
 

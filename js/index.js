@@ -93,7 +93,6 @@ function showProfileEditPopup() {
   profileNameInput.value = profileName.textContent;
   profileSubtitleInput.value = subtitle.textContent;  
   profileNameInput.focus();  
-  document.addEventListener('keydown', listenToEsc);
 }
 
 function showPlaceAddPopup() {

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <link rel="stylesheet" href="dev.css">
 </head>
 
 <body class="page">
@@ -37,10 +38,13 @@
       <button type="button" class="popup__close-btn" aria-label="закрыть"></button>      
       <form name="profileEditForm"  class="popup__form">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" class="popup__input" name="profileNameInput" placeholder="Имя или заголовок"
+        <input id="profile-name-input" type="text" class="popup__input popup__input_type_error" name="profileNameInput"
+          placeholder="Имя или заголовок"
           required autocomplete="off">
-        <input type="text" class="popup__input" name="profileSubtitleInput" placeholder="Описание"
+        <span class="popup__form-error profile-name-input-error">Вы пропустили это поле.</span>
+        <input id="profile-subtitle-input" type="text" class="popup__input" name="profileSubtitleInput" placeholder="Описание"
           required autocomplete="off">
+        <span class="popup__form-error profile-subtitle-input-error">Вы пропустили это поле.</span>
         <input type="submit" class="popup__save-btn" value="Сохранить">
       </form>
     </div>
@@ -76,6 +80,7 @@
     </li>
   </template>
   <script src="./js/index.js"></script>
+  <script src="./js/validation.js"></script>
 </body>
 
 </html>

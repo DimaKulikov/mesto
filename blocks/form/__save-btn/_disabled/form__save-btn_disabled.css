@@ -1,4 +1,4 @@
-.popup__save-btn_disabled {
+.form__save-btn_disabled {
   opacity: .2;
   background: none;
   border: 1px solid black;

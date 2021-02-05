@@ -1,3 +1,7 @@
+// document.addEventListener('click', (e) => {
+//   console.log(e.target)
+// })
+
 // initial cards
 const initialCards = [
   {
@@ -103,8 +107,16 @@ function removeCard (evt) {
 
 // Universal popup
 function openPopup(popup) {
+  const closeBtn = popup.querySelector('.popup__close-btn');
   popup.classList.add('popup_opened');  
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup || e.target === closeBtn) {
+      closePopup(popup);
+    }
+  })
   document.addEventListener('keydown', listenToEsc);
+
+
 }
 
 function closePopup(popup) {
@@ -150,12 +162,13 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
 // Click listeners
 profileEditBtn.addEventListener('click', showProfileEditPopup);
 placeAddBtn.addEventListener('click', showPlaceAddPopup);
-popupCloseBtns.forEach(btn => {
-  btn.addEventListener('click', () => {    
-    const openedPopup = btn.closest('.popup');
-    closePopup(openedPopup);
-  })
-});
+
+// popupCloseBtns.forEach(btn => {
+//   btn.addEventListener('click', () => {    
+//     const openedPopup = btn.closest('.popup');
+//     closePopup(openedPopup);
+//   })
+// });
 
 // Key listeners
 function listenToEsc(event) {

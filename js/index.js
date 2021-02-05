@@ -1,7 +1,3 @@
-// document.addEventListener('click', (e) => {
-//   console.log(e.target)
-// })
-
 // initial cards
 const initialCards = [
   {

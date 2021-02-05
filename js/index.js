@@ -30,6 +30,9 @@ const settings = {
   cardFadeOutDuration: 300  
 }
 
+// popups
+const popups = document.querySelectorAll('.popup')
+
 // profile elements
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
@@ -57,9 +60,6 @@ const placeImageInput = placeAddPopup.querySelector('input[name=placeImageInput]
 const imagePopup = document.querySelector('.popup_image');
 const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupSubtitle = imagePopup.querySelector('.popup__subtitle');
-
-//popup close buttons
-const popupCloseBtns = document.querySelectorAll('.popup__close-btn');
 
 // render hardcoded cards on page load
 initialCards.forEach(el => {
@@ -103,13 +103,7 @@ function removeCard (evt) {
 
 // Universal popup
 function openPopup(popup) {
-  const closeBtn = popup.querySelector('.popup__close-btn');
   popup.classList.add('popup_opened');  
-  popup.addEventListener('click', (e) => {
-    if (e.target === popup || e.target === closeBtn) {
-      closePopup(popup);
-    }
-  })
   document.addEventListener('keydown', listenToEsc);
 
 
@@ -156,6 +150,13 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
 // Click listeners
 profileEditBtn.addEventListener('click', showProfileEditPopup);
 placeAddBtn.addEventListener('click', showPlaceAddPopup);
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-btn')) {
+      closePopup(popup)
+    }
+  })
+})
 
 // Key listeners
 function listenToEsc(event) {

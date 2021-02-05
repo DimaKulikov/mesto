@@ -32,34 +32,38 @@
     </section>
   </main>
   <footer class="footer page__section">
-    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
   <div class="popup popup_profile-edit">
     <div class="popup__container">
       <button class="popup__close-btn" type="button" aria-label="закрыть"></button>
-      <form class="form" name="profileEditForm">
+      <form class="form" name="profileEditForm" novalidate>
         <h2 class="form__title">Редактировать профиль</h2>
         <input class="form__input form__input_type_error" id="profile-name-input" type="text" name="profileNameInput"
           placeholder="Имя или заголовок"
-          required autocomplete="off">
-        <span class="form__error profile-name-input-error">Вы пропустили это поле.</span>
+          required autocomplete="off" minlength="2" maxlength="40">
+        <span class="form__error profile-name-input-error"></span>
         <input class="form__input" id="profile-subtitle-input" type="text" name="profileSubtitleInput" placeholder="Описание"
-          required autocomplete="off">
-        <span class="form__error profile-subtitle-input-error">Вы пропустили это поле.</span>
-        <input class="form__save-btn" type="submit" value="Сохранить">
+          required autocomplete="off" minlength="2" maxlength="200">
+        <span class="form__error profile-subtitle-input-error"></span>
+        <button class="form__submit" type="submit">Сохранить
+        </button>
       </form>
     </div>
   </div>
   <div class="popup popup_place-add">
     <div class="popup__container">
       <button class="popup__close-btn" type="button" aria-label="закрыть"></button>
-      <form class="form" name="placeAddForm">
+      <form class="form" name="placeAddForm" novalidate>
         <h2 class="form__title">Новое место</h2>
-        <input class="form__input" type="text" name="placeNameInput" placeholder="Название"
+        <input class="form__input" type="text" id="place-name-input" name="placeNameInput" placeholder="Название" required
+          autocomplete="off" minlength="2" maxlength="30">
+        <span class="form__error place-name-input-error"></span>
+        <input class="form__input" type="url" id="place-image-input" name="placeImageInput" placeholder="Ссылка на картинку"
           required autocomplete="off">
-        <input class="form__input" type="text" name="placeImageInput" placeholder="Ссылка на картинку"
-          required autocomplete="off">
-        <input class="form__save-btn" type="submit" value="Сохранить">
+        <span class="form__error place-image-input-error"></span>
+        <button class="form__submit form__submit_disabled" type="submit">Сохранить
+        </button>
       </form>
     </div>
   </div>
@@ -80,8 +84,7 @@
       </div>
     </li>
   </template>
-  <script src="./js/index.js"></script>
   <script src="./js/validation.js"></script>
+  <script src="./js/index.js"></script>
 </body>
-
 </html>

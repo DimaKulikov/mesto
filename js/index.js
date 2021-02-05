@@ -145,14 +145,12 @@ function showImagePopup (name,link) {
 
 // Submit listeners
 profileEditForm.addEventListener('submit', function submitProfileEditForm(evt) {
-  evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   subtitle.textContent = profileSubtitleInput.value;
   closePopup(profileEditPopup);
 });
 
 placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
-  evt.preventDefault();
   renderCard(placeNameInput.value, placeImageInput.value)
   placeNameInput.value = '';
   placeImageInput.value = '';
@@ -162,13 +160,6 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
 // Click listeners
 profileEditBtn.addEventListener('click', showProfileEditPopup);
 placeAddBtn.addEventListener('click', showPlaceAddPopup);
-
-// popupCloseBtns.forEach(btn => {
-//   btn.addEventListener('click', () => {    
-//     const openedPopup = btn.closest('.popup');
-//     closePopup(openedPopup);
-//   })
-// });
 
 // Key listeners
 function listenToEsc(event) {

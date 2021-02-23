@@ -46,6 +46,13 @@ function showProfileEditPopup() {
   profileNameInput.value = profileName.textContent;
   profileSubtitleInput.value = subtitle.textContent;  
   profileNameInput.focus();  
+  // fire input events to update submit button state
+  const event = new Event('input', {
+    bubbles: true,
+    cancelable: true,
+  });
+  profileNameInput.dispatchEvent(event);
+  profileSubtitleInput.dispatchEvent(event);
 }
 
 function showPlaceAddPopup() {
@@ -72,6 +79,12 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
   document.querySelector('.cards__list').prepend(newCard.createCard())
   placeNameInput.value = '';
   placeImageInput.value = '';
+  // fire an input event to update submit button state
+  const event = new Event('input', {
+    bubbles: true,
+    cancelable: true,
+  });
+  placeNameInput.dispatchEvent(event);
   closePopup(placeAddPopup);
 });
 

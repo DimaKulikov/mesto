@@ -18,10 +18,6 @@ const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
 const subtitle = profile.querySelector('.profile__subtitle');
 
-//cards elements
-// const cardsList = document.querySelector('.cards__list');
-// const template = document.querySelector('#card-template').content;
-
 // profile edit popup elements
 const profileEditBtn = document.querySelector('.profile__edit-btn');
 const profileEditPopup = document.querySelector('.popup_profile-edit');
@@ -41,47 +37,7 @@ const imagePopup = document.querySelector('.popup_image');
 const imagePopupImage = imagePopup.querySelector('.popup__image');
 const imagePopupSubtitle = imagePopup.querySelector('.popup__subtitle');
 
-// render hardcoded cards on page load
-// initialCards.forEach(el => {
-//   renderCard(el.name, el.link);
-// });
 
-// Functions 
-// Cards
-// function renderCard(name,link) {
-//   const newCard = createCard(name,link);
-//   cardsList.prepend(newCard);
-// }
-
-// function createCard(name,link){
-//   const newCard = template.cloneNode(true);
-//   const cardPicture = newCard.querySelector('.card__pic');
-//   const cardTitle = newCard.querySelector('.card__title');
-//   const likeBtn = newCard.querySelector('.card__like-btn');
-//   const removeBtn = newCard.querySelector('.card__remove-btn');
-//   cardPicture.src = link;
-//   cardPicture.alt = name;
-//   cardTitle.textContent = name;
-//   likeBtn.addEventListener('click', toggleLike);
-//   removeBtn.addEventListener('click', removeCard);
-//   cardPicture.addEventListener('click', () => {
-//     showImagePopup(name, link);
-//   });
-//   return newCard;
-// }
-
-// function toggleLike(evt) {
-//   evt.target.classList.toggle('card__like-btn_active');
-// }
-
-// function removeCard (evt) {
-//   evt.target.parentNode.classList.add('card_removed');
-//   setTimeout(()=>{
-//     evt.target.parentNode.remove();
-//   }, settings.cardFadeOutDuration);  
-// }
-
-// Universal popup
 function openPopup(popup) {
   popup.classList.add('popup_opened');  
   document.addEventListener('keydown', listenToEsc);

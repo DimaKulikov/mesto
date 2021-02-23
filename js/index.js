@@ -2,13 +2,6 @@ import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js'
 import { options } from './data.js'
 
-const formList = Array.from(document.querySelectorAll('.form'));
-formList.forEach((form) => {
-  form.addEventListener('submit', (e) => e.preventDefault());
-  const validator = new FormValidator(options, form);
-  validator.enableValidation()
-});
-
 // popups
 const popups = document.querySelectorAll('.popup')
 
@@ -40,8 +33,6 @@ const imagePopupSubtitle = imagePopup.querySelector('.popup__subtitle');
 function openPopup(popup) {
   popup.classList.add('popup_opened');  
   document.addEventListener('keydown', listenToEsc);
-
-
 }
 
 function closePopup(popup) {
@@ -60,6 +51,7 @@ function showProfileEditPopup() {
 function showPlaceAddPopup() {
   openPopup(placeAddPopup);
 }
+
 
 export function showImagePopup (name,link) {
   openPopup(imagePopup);
@@ -102,3 +94,10 @@ function listenToEsc(event) {
   }
 }
 
+// Form Validator
+const formList = Array.from(document.querySelectorAll('.form'));
+formList.forEach((form) => {
+  form.addEventListener('submit', (e) => e.preventDefault());
+  const validator = new FormValidator(options, form);
+  validator.enableValidation()
+});

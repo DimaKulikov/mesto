@@ -1,9 +1,14 @@
 import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js'
+import { options } from './data.js'
 
-
-// const settings = {
-//   cardFadeOutDuration: 300  
-// }
+const formList = Array.from(document.querySelectorAll('.form'));
+formList.forEach((form) => {
+  form.addEventListener('submit', (e) => e.preventDefault());
+  const validator = new FormValidator(options, form);
+  console.log(validator)
+  validator.enableValidation()
+});
 
 // popups
 const popups = document.querySelectorAll('.popup')

@@ -1,10 +1,10 @@
 import { initialCards } from './data.js';
 
 class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, url, templateSelector) {
     this._templateSelector = templateSelector;
     this._name = name;
-    this._link = link;
+    this._url = url;
     this._isLiked = false;
     this._element;
     this._cardPicture;

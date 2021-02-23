@@ -34,7 +34,6 @@ class Card {
     })
 
     this._image.addEventListener('click', () => {
-      console.log(this)
       showImagePopup(this._name,this._url)
     })
   }

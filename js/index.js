@@ -6,7 +6,6 @@ const formList = Array.from(document.querySelectorAll('.form'));
 formList.forEach((form) => {
   form.addEventListener('submit', (e) => e.preventDefault());
   const validator = new FormValidator(options, form);
-  console.log(validator)
   validator.enableValidation()
 });
 

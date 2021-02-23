@@ -117,9 +117,7 @@ profileEditForm.addEventListener('submit', function submitProfileEditForm(evt) {
 
 placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
   const newCard = new Card(placeNameInput.value, placeImageInput.value, '#card-template')
-  const newCardElement = newCard.createCard();
-  newCard._setEventListeners();
-  document.querySelector('.cards__list').prepend(newCardElement)
+  document.querySelector('.cards__list').prepend(newCard.createCard())
   placeNameInput.value = '';
   placeImageInput.value = '';
   closePopup(placeAddPopup);

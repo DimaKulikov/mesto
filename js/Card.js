@@ -58,9 +58,7 @@ class Card {
 
 initialCards.forEach(card => {
   const newCard = new Card(card.name, card.link, '#card-template')
-  const newCardElement = newCard.createCard();
-  newCard._setEventListeners();
-  document.querySelector('.cards__list').prepend(newCardElement)
+  document.querySelector('.cards__list').prepend(newCard.createCard())
 })
 
 export { Card };

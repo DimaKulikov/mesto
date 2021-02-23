@@ -1,4 +1,4 @@
-import { initialCards } from './data.js';
+
 import { showImagePopup } from './index.js'
 
 class Card {
@@ -57,9 +57,6 @@ class Card {
   }
 }
 
-initialCards.forEach(card => {
-  const newCard = new Card(card.name, card.link, '#card-template')
-  document.querySelector('.cards__list').prepend(newCard.createCard())
-})
+
 
 export { Card };

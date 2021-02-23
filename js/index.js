@@ -1,6 +1,7 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js'
 import { options } from './data.js'
+import { initialCards } from './data.js';
 
 // popups
 const popups = document.querySelectorAll('.popup')
@@ -46,7 +47,7 @@ function showProfileEditPopup() {
   profileNameInput.value = profileName.textContent;
   profileSubtitleInput.value = subtitle.textContent;  
   profileNameInput.focus();  
-  // fire input events to update submit button state
+  // fire input events to update submit button state and error messages
   const event = new Event('input', {
     bubbles: true,
     cancelable: true,
@@ -114,5 +115,11 @@ formList.forEach((form) => {
   const validator = new FormValidator(options, form);
   validator.enableValidation()
 });
+
+// render hardcoded cards
+initialCards.forEach(card => {
+  const newCard = new Card(card.name, card.link, '#card-template')
+  document.querySelector('.cards__list').prepend(newCard.createCard())
+})
 
 export {showImagePopup}

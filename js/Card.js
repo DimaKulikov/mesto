@@ -10,9 +10,9 @@ class Card {
   }
 
   _getTemplate() {
-    const template = document.querySelector(this._templateSelector).content
-    const element = template.cloneNode(true).children[0]
-    return element;
+    const template = document.querySelector(this._templateSelector).content.cloneNode(true)
+    const element = template.querySelector('.card')
+    return element
   }
 
   _handleLike() {

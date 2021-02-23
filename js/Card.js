@@ -7,11 +7,6 @@ class Card {
     this._name = name;
     this._url = url;
     this._isLiked = false;
-    this._element;
-    this._cardPicture;
-    this._cardTitle;
-    this._likeBtn;
-    this._removeBtn;
   }
 
   _getTemplate() {

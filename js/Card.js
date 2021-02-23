@@ -1,4 +1,5 @@
 import { initialCards } from './data.js';
+import { showImagePopup } from './index.js'
 
 class Card {
   constructor(name, url, templateSelector) {
@@ -35,6 +36,11 @@ class Card {
 
     this._removeBtn.addEventListener('click', () => {
       this._handleRemove();
+    })
+
+    this._image.addEventListener('click', () => {
+      console.log(this)
+      showImagePopup(this._name,this._url)
     })
   }
 

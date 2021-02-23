@@ -101,7 +101,7 @@ function showPlaceAddPopup() {
   openPopup(placeAddPopup);
 }
 
-function showImagePopup (name,link) {
+export function showImagePopup (name,link) {
   openPopup(imagePopup);
   imagePopupImage.src = link;
   imagePopupImage.alt = name;

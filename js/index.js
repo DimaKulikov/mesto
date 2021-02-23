@@ -53,7 +53,7 @@ function showPlaceAddPopup() {
 }
 
 
-export function showImagePopup (name,link) {
+function showImagePopup (name,link) {
   openPopup(imagePopup);
   imagePopupImage.src = link;
   imagePopupImage.alt = name;
@@ -101,3 +101,5 @@ formList.forEach((form) => {
   const validator = new FormValidator(options, form);
   validator.enableValidation()
 });
+
+export {showImagePopup}

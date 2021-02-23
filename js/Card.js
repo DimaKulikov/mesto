@@ -22,6 +22,7 @@ class Card {
 
   _handleRemove() {
     this._element.remove()
+    this._element = null;
   }
 
   _setEventListeners() {

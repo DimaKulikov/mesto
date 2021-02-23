@@ -38,16 +38,21 @@ class Card {
     })
   }
 
-  createCard() {
+  _getElements() {
     this._element = this._getTemplate();
-    this._cardPicture = this._element.querySelector('.card__pic');
-    this._cardTitle = this._element.querySelector('.card__title');
+    this._image = this._element.querySelector('.card__pic');
+    this._title = this._element.querySelector('.card__title');
     this._likeBtn = this._element.querySelector('.card__like-btn');
     this._removeBtn = this._element.querySelector('.card__remove-btn');
-    this._cardPicture.src = this._link;
-    this._cardPicture.alt = this._name;
-    this._cardTitle.textContent = this._name;
-    return this._element;
+  }
+
+  createCard() {  
+    this._getElements()
+    this._image.src = this._url;
+    this._image.alt = this._name;
+    this._title.textContent = this._name;
+    this._setEventListeners()
+    return this._element
   }
 }
 

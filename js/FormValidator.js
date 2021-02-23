@@ -2,6 +2,7 @@ class FormValidator {
   constructor(selectors, formElement) {
     this._form = formElement
     this._selectors = selectors
+    this._inputChangeHandler = this._inputChangeHandler.bind(this)
   }
   _showInputError() {
     this._lastInput.classList.add(this._selectors.inputErrorClass);
@@ -45,9 +46,7 @@ class FormValidator {
 
   _setEventListeners() {    
     this._inputList.forEach(input => {
-      input.addEventListener('input', (e)=>{
-        this._inputChangeHandler(e)
-      });
+      input.addEventListener('input', this._inputChangeHandler);
     })
   }
 

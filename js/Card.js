@@ -1,12 +1,10 @@
-
-import { showImagePopup } from './index.js'
-
 class Card {
-  constructor(name, url, templateSelector) {
+  constructor(name, url, templateSelector, imageClickHandler) {
     this._templateSelector = templateSelector;
     this._name = name;
     this._url = url;
     this._isLiked = false;
+    this._imageClickHandler = imageClickHandler;
   }
 
   _getTemplate() {

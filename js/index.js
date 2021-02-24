@@ -77,7 +77,7 @@ profileEditForm.addEventListener('submit', function submitProfileEditForm(evt) {
 });
 
 placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
-  const newCard = new Card(placeNameInput.value, placeImageInput.value, '#card-template')
+  const newCard = new Card(placeNameInput.value, placeImageInput.value, '#card-template', showImagePopup)
   document.querySelector('.cards__list').prepend(newCard.createCard())
   placeNameInput.value = '';
   placeImageInput.value = '';
@@ -122,7 +122,7 @@ formList.forEach((form) => {
 
 // render hardcoded cards
 initialCards.forEach(card => {
-  const newCard = new Card(card.name, card.link, '#card-template')
+  const newCard = new Card(card.name, card.link, '#card-template', showImagePopup)
   document.querySelector('.cards__list').prepend(newCard.createCard())
 })
 

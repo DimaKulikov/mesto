@@ -117,12 +117,16 @@ function listenToEsc(event) {
 }
 
 // Form Validator
-const formList = Array.from(document.querySelectorAll('.form'));
-formList.forEach((form) => {
-  form.addEventListener('submit', (e) => e.preventDefault());
-  const validator = new FormValidator(options, form);
-  validator.enableValidation()
-});
+// const formList = Array.from(document.querySelectorAll('.form'));
+// formList.forEach((form) => {
+//   form.addEventListener('submit', (e) => e.preventDefault());
+//   const validator = new FormValidator(options, form);
+//   validator.enableValidation()
+// });
+const profileEditValidator = new FormValidator(options, profileEditForm);
+const placeAddValidator = new FormValidator(options, placeAddForm);
+profileEditValidator.enableValidation();
+placeAddValidator.enableValidation();
 
 // render hardcoded cards
 initialCards.forEach(card => {

@@ -48,6 +48,7 @@ function showProfileEditPopup() {
   profileSubtitleInput.value = subtitle.textContent;  
   profileNameInput.focus();  
   // fire input events to update submit button state and error messages
+  // здесь был баг, если стереть текст в любом из полей и закрыть попап. при последующем открытии поля заполнялись автоматически, но кнопка и сообщения об ошибке не обновлялись
   const event = new Event('input', {
     bubbles: true,
     cancelable: true,
@@ -81,6 +82,9 @@ placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
   placeNameInput.value = '';
   placeImageInput.value = '';
   // fire an input event to update submit button state
+  // это блокирует кнопку, но не знаю можно ли так. другие варианты как мне кажется:
+  // 1. сделать метод _toggleButtonState публичным у класса FormValidator и вызывать его здесь
+  // 2. находить кнопку через querySelector здесь или в глобальной области и здесь навешивать на неё класс и свойство disabled
   const event = new Event('input', {
     bubbles: true,
     cancelable: true,

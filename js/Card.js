@@ -21,6 +21,10 @@ class Card {
   _handleRemove() {
     this._element.remove()
     this._element = null;
+    this._image = null;
+    this._title = null;
+    this._likeBtn = null;
+    this._removeBtn = null;
   }
 
   _setEventListeners() {

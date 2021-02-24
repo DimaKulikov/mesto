@@ -3,6 +3,10 @@ import { FormValidator } from './FormValidator.js'
 import { options } from './data.js'
 import { initialCards } from './data.js';
 
+const settings = {
+  closePopupButton: 'Escape'
+}
+
 // popups
 const popups = document.querySelectorAll('.popup')
 
@@ -106,7 +110,7 @@ popups.forEach((popup) => {
 
 // Key listeners
 function listenToEsc(event) {
-  if (event.key === 'Escape') {
+  if (event.key === settings.closePopupButton) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }

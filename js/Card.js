@@ -59,6 +59,4 @@ class Card {
   }
 }
 
-
-
 export { Card };

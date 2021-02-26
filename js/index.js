@@ -1,9 +1,9 @@
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { initialCards } from './data.js'
-import { validatorOptions, elements } from './constants.js'
+import { validatorOptions } from './constants.js'
+import * as elements from './elements.js'
 import { openPopup, closePopup } from './utils.js'
-
 
 // Form Validators
 const profileEditValidator = new FormValidator(validatorOptions, elements.profileEditForm)
@@ -21,7 +21,7 @@ initialCards.forEach(card => {
 function showProfileEditPopup() {
   openPopup(elements.profileEditPopup);
   elements.profileNameInput.value = elements.profileName.textContent;
-  elements.profileSubtitleInput.value = elements.subtitle.textContent;
+  elements.profileSubtitleInput.value = elements.profileSubtitle.textContent;
   // fire input events to update submit button state and error messages
   const event = new Event('input', {
     bubbles: true,
@@ -29,7 +29,6 @@ function showProfileEditPopup() {
   });
   elements.profileNameInput.dispatchEvent(event);
   elements.profileSubtitleInput.dispatchEvent(event);
-
 }
 
 function showPlaceAddPopup() {
@@ -46,7 +45,7 @@ function showImagePopup(name, link) {
 // Submit listeners
 elements.profileEditForm.addEventListener('submit', () => {
   elements.profileName.textContent = elements.profileNameInput.value
-  elements.subtitle.textContent = elements.profileSubtitleInput.value
+  elements.profileSubtitle.textContent = elements.profileSubtitleInput.value
   closePopup(elements.profileEditPopup)
 })
 

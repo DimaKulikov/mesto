@@ -1,4 +1,4 @@
-import { settings, elements } from './constants.js'
+import { settings } from './constants.js'
 
 // Popup
 function openPopup(popup) {

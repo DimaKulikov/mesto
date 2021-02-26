@@ -24,15 +24,17 @@ const subtitle = profile.querySelector('.profile__subtitle')
 const profileEditBtn = document.querySelector('.profile__edit-btn')
 const profileEditPopup = document.querySelector('.popup_profile-edit')
 const profileEditForm = profileEditPopup.querySelector('form[name=profileEditForm]')
-const profileNameInput = profileEditPopup.querySelector('input[name=profileNameInput]')
-const profileSubtitleInput = profileEditPopup.querySelector('input[name=profileSubtitleInput]')
+const profileNameInput = profileEditForm.querySelector('input[name=profileNameInput]')
+const profileSubtitleInput = profileEditForm.querySelector('input[name=profileSubtitleInput]')
+const profileEditSubmitBtn = profileEditForm.querySelector('.form__submit')
 
 // place add popup elements
 const placeAddBtn = document.querySelector('.profile__add-btn')
 const placeAddPopup = document.querySelector('.popup_place-add')
 const placeAddForm = placeAddPopup.querySelector('form[name=placeAddForm]')
-const placeNameInput = placeAddPopup.querySelector('input[name=placeNameInput]')
-const placeImageInput = placeAddPopup.querySelector('input[name=placeImageInput]')
+const placeNameInput = placeAddForm.querySelector('input[name=placeNameInput]')
+const placeImageInput = placeAddForm.querySelector('input[name=placeImageInput]')
+const placeAddSubmitBtn = placeAddForm.querySelector('.form__submit')
 
 //image popup elements
 const imagePopup = document.querySelector('.popup_image')
@@ -52,11 +54,13 @@ const elements = {
   profileEditForm,
   profileNameInput,
   profileSubtitleInput,
+  profileEditSubmitBtn,
   placeAddBtn,
   placeAddPopup,
   placeAddForm,
   placeNameInput,
   placeImageInput,
+  placeAddSubmitBtn,
   imagePopup,
   imagePopupImage,
   imagePopupSubtitle,

@@ -2,7 +2,7 @@ import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
 import { initialCards } from './data.js'
 import { validatorOptions, elements } from './constants.js'
-import { closePopup, showImagePopup, showPlaceAddPopup, showProfileEditPopup } from './utils.js'
+import { openPopup, closePopup } from './utils.js'
 
 
 // Form Validators
@@ -17,24 +17,46 @@ initialCards.forEach(card => {
   elements.cardsContainer.prepend(newCard.createCard())
 })
 
+//popups
+function showProfileEditPopup() {
+  openPopup(elements.profileEditPopup);
+  elements.profileNameInput.value = elements.profileName.textContent;
+  elements.profileSubtitleInput.value = elements.subtitle.textContent;
+  // fire input events to update submit button state and error messages
+  const event = new Event('input', {
+    bubbles: true,
+    cancelable: true,
+  });
+  elements.profileNameInput.dispatchEvent(event);
+  elements.profileSubtitleInput.dispatchEvent(event);
+
+}
+
+function showPlaceAddPopup() {
+  openPopup(elements.placeAddPopup);
+}
+
+function showImagePopup(name, link) {
+  openPopup(elements.imagePopup);
+  elements.imagePopupImage.src = link;
+  elements.imagePopupImage.alt = name;
+  elements.imagePopupSubtitle.textContent = name;
+}
+
 // Submit listeners
-elements.profileEditForm.addEventListener('submit', function submitProfileEditForm(evt) {
+elements.profileEditForm.addEventListener('submit', () => {
   elements.profileName.textContent = elements.profileNameInput.value
   elements.subtitle.textContent = elements.profileSubtitleInput.value
   closePopup(elements.profileEditPopup)
 })
 
-placeAddForm.addEventListener('submit', function submitPlaceAddForm(evt) {
+placeAddForm.addEventListener('submit', () => {
   const newCard = new Card(elements.placeNameInput.value, elements.placeImageInput.value, '#card-template', showImagePopup)
   elements.cardsContainer.prepend(newCard.createCard())
   elements.placeNameInput.value = ''
   elements.placeImageInput.value = ''
-  // fire an input event to update submit button state
-  const event = new Event('input', {
-    bubbles: true,
-    cancelable: true,
-  })
-  elements.placeNameInput.dispatchEvent(event)
+  elements.placeAddSubmitBtn.classList.add(validatorOptions.inactiveButtonClass)
+  elements.placeAddSubmitBtn.disabled = true
   closePopup(elements.placeAddPopup)
 })
 

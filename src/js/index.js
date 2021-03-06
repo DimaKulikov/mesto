@@ -33,7 +33,7 @@ function showProfileEditPopup() {
 
 function showPlaceAddPopup() {
   openPopup(elements.placeAddPopup);
-}
+} 
 
 function showImagePopup(name, link) {
   openPopup(elements.imagePopup);

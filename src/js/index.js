@@ -6,6 +6,7 @@ import * as elements from './elements.js'
 import { openPopup, closePopup } from './utils.js'
 
 import '../pages/index.css'
+import '../dev.css'
 
 // Form Validators
 const profileEditValidator = new FormValidator(validatorOptions, elements.profileEditForm)

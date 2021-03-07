@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor(name, url, templateSelector, imageClickHandler) {
     this._templateSelector = templateSelector;
     this._name = name;
@@ -59,4 +59,3 @@ class Card {
   }
 }
 
-export { Card };

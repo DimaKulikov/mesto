@@ -1,9 +1,12 @@
-import { Card } from '../components/Card.js'
-import { FormValidator } from '../components/FormValidator.js'
+import Card from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js'
+import Section from '../components/Section'
+
 import { initialCards } from '../utils/data.js'
 import { validatorOptions } from '../utils/constants.js'
 import * as elements from '../utils/elements.js'
 import { openPopup, closePopup } from '../utils/utils.js'
+
 
 import '../pages/index.css'
 import '../dev.css'

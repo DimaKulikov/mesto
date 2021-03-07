@@ -5,6 +5,8 @@ import { validatorOptions } from './constants.js'
 import * as elements from './elements.js'
 import { openPopup, closePopup } from './utils.js'
 
+import '../pages/index.css'
+
 // Form Validators
 const profileEditValidator = new FormValidator(validatorOptions, elements.profileEditForm)
 const placeAddValidator = new FormValidator(validatorOptions, elements.placeAddForm)

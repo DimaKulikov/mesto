@@ -7,7 +7,6 @@ import { validatorOptions } from '../utils/constants.js'
 import * as elements from '../utils/elements.js'
 import { openPopup, closePopup } from '../utils/utils.js'
 
-
 import '../pages/index.css'
 import '../dev.css'
 
@@ -17,11 +16,17 @@ const placeAddValidator = new FormValidator(validatorOptions, elements.placeAddF
 profileEditValidator.enableValidation()
 placeAddValidator.enableValidation()
 
-// render hardcoded cards
-initialCards.forEach(card => {
-  const newCard = new Card(card.name, card.link, '#card-template', showImagePopup)
-  elements.cardsContainer.prepend(newCard.createCard())
-})
+
+// List of cards
+const cardsList = new Section({
+  data: initialCards, 
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, '#card-template', showImagePopup)
+    const cardElement = card.createCard()
+    cardsList.addItem(cardElement)
+  }
+}, '.cards__list')
+cardsList.renderItems();
 
 //popups
 function showProfileEditPopup() {

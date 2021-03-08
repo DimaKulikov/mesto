@@ -1,5 +1,13 @@
-/** Represents a card of a place */
+/**
+ * Represents a card with an image of a place
+ */
 export default class Card {
+  /**
+   * 
+   * @param {object} data object containing the data for the card. Must include 'name' and 'link' properties
+   * @param {string} templateSelector css selector for the card template
+   * @param {function} clickHandler a callback function
+   */
   constructor({data, templateSelector, clickHandler}) {
     this._templateSelector = templateSelector;
     this._name = data.name;
@@ -8,17 +16,26 @@ export default class Card {
     this._imageClickHandler = clickHandler;
   }
 
+  /**
+   * Finds the template in the document and returs a new card element
+   */
   _getTemplate() {
     const template = document.querySelector(this._templateSelector).content.cloneNode(true)
     const element = template.querySelector('.card')
     return element
   }
 
+  /**
+   * Callback function to change like button state
+   */
   _handleLike() {
     this._isLiked = !this._isLiked
     this._likeBtn.classList.toggle('card__like-btn_active')
   }
 
+  /**
+   * Callback function to remove the card element from the DOM 
+   */
   _handleRemove() {
     this._element.remove()
     this._element = null;
@@ -28,6 +45,9 @@ export default class Card {
     this._removeBtn = null;
   }
 
+  /**
+   * Sets click handlers 
+   */
   _setEventListeners() {
     this._likeBtn.addEventListener('click', () => {
       this._handleLike()
@@ -42,6 +62,9 @@ export default class Card {
     })
   }
 
+  /**
+   * Gets the necessary DOM elements and saves them as class instance properties
+   */
   _getElements() {
     this._element = this._getTemplate();
     this._image = this._element.querySelector('.card__pic');
@@ -50,6 +73,9 @@ export default class Card {
     this._removeBtn = this._element.querySelector('.card__remove-btn');
   }
 
+  /**
+   * Create and return a ready card element
+   */
   createCard() {  
     this._getElements()
     this._image.src = this._link;

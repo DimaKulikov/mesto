@@ -1,10 +1,11 @@
+/** Represents a card of a place */
 export default class Card {
-  constructor(name, url, templateSelector, imageClickHandler) {
+  constructor({data, templateSelector, clickHandler}) {
     this._templateSelector = templateSelector;
-    this._name = name;
-    this._url = url;
+    this._name = data.name;
+    this._link = data.link;
     this._isLiked = false;
-    this._imageClickHandler = imageClickHandler;
+    this._imageClickHandler = clickHandler;
   }
 
   _getTemplate() {
@@ -37,7 +38,7 @@ export default class Card {
     })
 
     this._image.addEventListener('click', () => {
-      this._imageClickHandler(this._name, this._url)
+      this._imageClickHandler(this._name, this._link)
     })
   }
 
@@ -51,7 +52,7 @@ export default class Card {
 
   createCard() {  
     this._getElements()
-    this._image.src = this._url;
+    this._image.src = this._link;
     this._image.alt = this._name;
     this._title.textContent = this._name;
     this._setEventListeners()

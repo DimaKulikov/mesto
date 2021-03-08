@@ -1,7 +1,3 @@
-const settings = {
-  closePopupButton: 'Escape'
-}
-
 const validatorOptions = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -11,4 +7,4 @@ const validatorOptions = {
   errorClass: 'form__error_active'
 }
 
-export { settings, validatorOptions }
+export { validatorOptions }

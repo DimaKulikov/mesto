@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "jsdoc": "jsdoc ./src/pages/index.js -c ./jsdoc.config.js -r"
   },
   "repository": {
     "type": "git",

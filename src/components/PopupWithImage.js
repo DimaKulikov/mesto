@@ -24,8 +24,13 @@ export default class PopupWithImage extends Popup{
    * @param {object} param0 object containing data to be displated in the popup . Must contain "name" and "link" keys
    */
   open({name, link}){
-    super.open()
+    super.open()    
+    this._image.src = '#'
     this._image.src = link 
     this._subtitle.textContent = name 
+  }
+
+  close() {
+    super.close();
   }
 }

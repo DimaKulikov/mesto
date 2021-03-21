@@ -8,12 +8,13 @@ export default class Card {
    * @param {string} templateSelector css selector for the card template
    * @param {function} clickHandler a callback function
    */
-  constructor({data, templateSelector, clickHandler}) {
+  constructor({ data, templateSelector, clickHandler, deleteHandler }) {
     this._templateSelector = templateSelector;
     this._name = data.name;
     this._link = data.link;
     this._isLiked = false;
     this._imageClickHandler = clickHandler;
+    this._deleteHandler = deleteHandler.bind(this);
   }
 
   /**
@@ -36,7 +37,7 @@ export default class Card {
   /**
    * Callback function to remove the card element from the DOM 
    */
-  _handleRemove() {
+  removeCard() {
     this._element.remove()
     this._element = null;
     this._image = null;
@@ -54,7 +55,7 @@ export default class Card {
     })
 
     this._removeBtn.addEventListener('click', () => {
-      this._handleRemove();
+      this._deleteHandler(this)
     })
 
     this._image.addEventListener('click', () => {

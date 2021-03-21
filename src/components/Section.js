@@ -1,11 +1,15 @@
 /**
- * Class representing a section where any content needs to be rendered dynamically
+ * A class representing a section where any content needs to be rendered dynamically
+ *
+ * @export
+ * @class Section
  */
-
 export default class Section {
+
   /**
-   * Creates a section
-   * @param {object} param0 
+   * Creates an instance of Section.
+   * @param {*} {data, renderer, containerSelector}
+   * @memberof Section
    */
   constructor({data, renderer, containerSelector}){   
     this._container = document.querySelector(containerSelector)
@@ -15,6 +19,8 @@ export default class Section {
 
   /**
    * Runs every item in the array of initial items through the passed in renderer function
+   *
+   * @memberof Section
    */
   renderItems(){
     this.initData.forEach(item => {
@@ -24,9 +30,11 @@ export default class Section {
 
   /**
    * Inserts an element into the section container
-   * @param {Element} item DOM Node to be inserted into the section container
+   *
+   * @param {HTMLElement} item DOM element to be inserted into the section container
+   * @memberof Section
    */
-  addItem(item){
+  addItem(item) {
     this._container.prepend(item)    
   }
 }

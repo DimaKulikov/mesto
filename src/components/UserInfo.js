@@ -1,6 +1,12 @@
 /**
  * A class displaying and modifying user information on the page
  */
+/**
+ * A class displaying and modifying user information on the page
+ *
+ * @export
+ * @class UserInfo
+ */
 export default class UserInfo {
   /**
    * 

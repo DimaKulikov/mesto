@@ -14,7 +14,7 @@ export default class PopupWithForm extends Popup{
    * @param {string} popupSelector css selector for the popup
    * @param {string} submitHandler a callback function to handle submission of the form
    */
-  constructor(popupSelector, submitHandler){
+  constructor({ popupSelector, submitHandler }) {
     super(popupSelector)
     this._submitHandler = submitHandler
     this._submitHandler = this._submitHandler.bind(this)

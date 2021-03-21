@@ -1,4 +1,6 @@
-const presets = [
+const isDev = process.env.NODE_ENV === 'development'
+
+const useBabel = [
   [
     '@babel/env', {
       targets: {
@@ -12,4 +14,7 @@ const presets = [
     }
   ]
 ]
+
+const presets = isDev ? [] : useBabel;
+
 module.exports = { presets };

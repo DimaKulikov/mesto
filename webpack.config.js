@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
   entry: {
@@ -19,6 +20,9 @@ module.exports = {
     compress: true,
     port: 8080,
     open: true
+  },
+  optimization: {
+    minimize: !isDev
   },
   module: {
     rules: [
@@ -49,7 +53,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      minify: false
+      minify: !isDev
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin()

@@ -52,14 +52,17 @@ export default class Card {
     this._title = this._element.querySelector('.card__title');
     this._likeBtn = this._element.querySelector('.card__like-btn');
     this._removeBtn = this._element.querySelector('.card__remove-btn');
+    this._likeCount = this._element.querySelector('.card__like-count');
   }
 
-  createCard() {  
+  createCard() {     
     this._getElements()
     this._image.src = this._link;
     this._image.alt = this._name;
     this._title.textContent = this._name;
+    this._likeCount.textContent = this._likes.length
     this._setEventListeners()
+    console.log(this)
     return this._element
   }
 }

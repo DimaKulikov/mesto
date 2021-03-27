@@ -11,9 +11,9 @@ export default class Section {
    * @param {*} {data, renderer, containerSelector}
    * @memberof Section
    */
-  constructor({data, renderer, containerSelector}){   
+  constructor({ initData, renderer, containerSelector }) {
     this._container = document.querySelector(containerSelector)
-    this.initData = data
+    this.initData = initData
     this._renderer = renderer
   }
 

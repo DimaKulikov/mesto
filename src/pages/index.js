@@ -110,7 +110,7 @@ const cardsList = new Section({
 */
 api.getInitialCards()
   .then(data=> {
-    cardsList.renderItems(data)
+    cardsList.renderItems(data.reverse())
   })
   .catch(err => {
     console.error('Ошибка при загрузке карточек:', err);

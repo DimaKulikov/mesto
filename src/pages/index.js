@@ -7,6 +7,7 @@ import Section from '../components/Section'
 import PopupWithImage from '../components/PopupWithImage'
 import PopupWithForm from '../components/PopupWithForm'
 import UserInfo from '../components/UserInfo'
+import Api from '../components/Api'
 
 /**
  * Import constants
@@ -30,7 +31,7 @@ const placeAddBtn = document.querySelector('.profile__add-btn')
 const placeAddForm = document.querySelector('form[name=placeAddForm]')
 
 /**
- * Create form validator instances and enable them
+ * Form validators
  */
 const profileEditValidator = new FormValidator(validatorOptions, profileEditForm)
 const placeAddValidator = new FormValidator(validatorOptions, placeAddForm)
@@ -39,90 +40,118 @@ placeAddValidator.enableValidation()
 
 
 /**
- * Initialise user information component
+ * API
+ */
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21', 
+  headers: {
+    authorization: 'a6be0e39-3b40-440d-b51a-2e6c0105cc3c'
+  }})
+
+ 
+
+/**
+ * User information
  */
 const userInfo = new UserInfo({
   nameSelector: '.profile__name', 
-  infoSelector: '.profile__subtitle'
+  infoSelector: '.profile__subtitle',
 })
+
+api.getUserInfo()
+  .then(userData => {
+    userInfo.updateUserData(userData)
+  })
+
+
 
 
 /**
- * Create a section containing the list of cards (pictures of places)
+ * List of cards
  */
 const cardsList = new Section({
-  data: initialCards, 
-  /**
-   * Passing in a renderer callback function to render each element in this section. The elements are instances of the Card class
-   * @param {object} data An object with the data for a card. Must contain 'name' and 'link' properties
-   */
+  data: [], 
   renderer: (data) => {
     const card = new Card({
-      data, 
-      templateSelector: '#card-template',
-
-      // Each card gets a callback click handler to display an image popup for the card's image      
+      data,
+      templateSelector: '#card-template',   
       clickHandler: () => imagePopup.open(data),
       deleteHandler: () => confirmRemovePopup.open()
-    })
-
-    // Create a DOM element from the Card instance    
-    const cardElement = card.createCard()
-
-    // Insert the element into the section container     
+    }) 
+    const cardElement = card.createCard()   
     cardsList.addItem(cardElement)
   },
   containerSelector: '.cards__list'
 })
+/** 
+ * Getting cards from the server
+*/
+api.getInitialCards()
+  .then(data=> {
+    cardsList.renderItems(data)
+  })
+  .catch(err => {
+    console.error('Ошибка при загрузке карточек:', err);
+  });
 
-// Render the initial cards passed in to the section's constructor as the 'data' parameter
-cardsList.renderItems();
+
 
 
 /**
+ * 
  * Popups
+ * 
  */
+
 /**
- * Creating an instance of a PopupWithForm for the profile editing popup. 
- * Passing in a callback function for the form's submit handler, which updates user information on the page via the UserInfo instance
+ * Profile editing popup
  */
 const profilePopup = new PopupWithForm({
   popupSelector: '.popup_profile-edit',
   submitHandler: () => {
-  // Update user info on the page
-  userInfo.setUserInfo(profilePopup.getInputValues())
-  // Close the popup after submit
-  profilePopup.close()
+    api.updateUserInfo(profilePopup.getInputValues())
+      .then(data => {
+        console.log(data)
+        userInfo.updateUserData(data)
+      })
+    profilePopup.close()
   }
 })
-// Set click and submit listeners
 profilePopup.setEventListeners()
 
 
 /**
- * Create an image popup 
+ * Image popup
  */
 const imagePopup = new PopupWithImage('.popup_image')
 imagePopup.setEventListeners()
 
 /**
- * Create an instance of a PopupWithForm for the place addition popup
+ * Place add popup
  */
 const placePopup = new PopupWithForm({
   popupSelector: '.popup_place-add',
   submitHandler: () => {
-    const data = placePopup.getInputValues()
-    const card = new Card({
-      data,
-      templateSelector: '#card-template',
-      clickHandler: () => imagePopup.open(data)
-    })
-    const cardElement = card.createCard()
-    cardsList.addItem(cardElement)
-    placePopup.close()
+    const cardData = placePopup.getInputValues()
+    console.log(cardData)
+    api.addCard(cardData)
+      .then(() => {
+        const card = new Card({
+          data: cardData,
+          templateSelector: '#card-template',
+          clickHandler: () => imagePopup.open(cardData)
+        })
+        const cardElement = card.createCard()
+        cardsList.addItem(cardElement)
+        placePopup.close()
+      })
+    
   }
 })
 placePopup.setEventListeners()
+
+// 
 
 /**
  * Popup confirmation on deleting a card
@@ -133,28 +162,26 @@ const confirmRemovePopup = new PopupWithForm({
     e.preventDefault();
     confirmRemovePopup.close()
     console.log(e)
-    console.log(this.
     //Api.removeCard(cardId) ???
   }
 })
 confirmRemovePopup.setEventListeners();
-confirmRemovePopup.open()
+
 
 
 /**
  * Event listeners for static elements
  */
-// Show profile popup and fill in the input fields with existing user information
+
 profileEditBtn.addEventListener('click', () => {
   profilePopup.open()
   profilePopup.setInputValues(userInfo.getUserInfo())
 })
 
-// Show the place additon popup and make sure the submit button state is correct
+
 placeAddBtn.addEventListener('click', () => {
   placeAddValidator.toggleButtonState()
   placePopup.open()
 })
-
 
 

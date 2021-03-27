@@ -1,40 +1,21 @@
 /**
- * A class representing a section where any content needs to be rendered dynamically
- *
- * @export
- * @class Section
+ * A class representing a section that can append items to itself
  */
 export default class Section {
-
-  /**
-   * Creates an instance of Section.
-   * @param {*} {data, renderer, containerSelector}
-   * @memberof Section
-   */
-  constructor({data, renderer, containerSelector}){   
+  constructor({renderer, containerSelector}){   
     this._container = document.querySelector(containerSelector)
-    this.initData = data
+    this.initData = []
     this._renderer = renderer
   }
 
-  /**
-   * Runs every item in the array of initial items through the passed in renderer function
-   *
-   * @memberof Section
-   */
-  renderItems(){
-    this.initData.forEach(item => {
+  renderItems(items){
+    this._items = items
+    this._items.forEach(item => {
       this._renderer(item)
     })
   }
 
-  /**
-   * Inserts an element into the section container
-   *
-   * @param {HTMLElement} item DOM element to be inserted into the section container
-   * @memberof Section
-   */
   addItem(item) {
-    this._container.prepend(item)    
+    this._container.append(item)    
   }
 }

@@ -42,25 +42,6 @@ placeAddValidator.enableValidation()
 
 
 /**
- *
- * API
- *
- */
-
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
-  headers: {
-    authorization: 'a6be0e39-3b40-440d-b51a-2e6c0105cc3c',
-    'Content-Type': 'application/json'
-  }
-});
-
-api.getInitialCards().then(data => console.log('rendering ', data))
-
-
-
-
-/**
  * API
  */
 
@@ -109,7 +90,7 @@ const cardsList = new Section({
  * Getting cards from the server
 */
 api.getInitialCards()
-  .then(data=> {
+  .then(data=> {    
     cardsList.renderItems(data.reverse())
   })
   .catch(err => {
@@ -133,7 +114,6 @@ const profilePopup = new PopupWithForm({
   submitHandler: () => {
     api.updateUserInfo(profilePopup.getInputValues())
       .then(data => {
-        console.log(data)
         userInfo.updateUserData(data)
       })
     profilePopup.close()
@@ -155,7 +135,6 @@ const placePopup = new PopupWithForm({
   popupSelector: '.popup_place-add',
   submitHandler: () => {
     const cardData = placePopup.getInputValues()
-    console.log(cardData)
     api.addCard(cardData)
       .then(() => {
         const card = new Card({

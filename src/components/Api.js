@@ -1,7 +1,7 @@
 export default class Api {
   constructor({baseUrl, headers}){
-    this.baseUrl = baseUrl,
-    this.headers = headers
+    this._baseUrl = baseUrl,
+    this._headers = headers
   }
 
   _parseResponse(res) {
@@ -13,24 +13,24 @@ export default class Api {
   }
 
   getInitialCards(){
-    return fetch(this.baseUrl + '/cards', {
-      headers: this.headers
+    return fetch(this._baseUrl + '/cards', {
+      headers: this._headers
     })
       .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));
   }
 
   getUserInfo(){
-    return fetch(this.baseUrl + '/users/me', {
-      headers: this.headers
+    return fetch(this._baseUrl + '/users/me', {
+      headers: this._headers
     })
       .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));
   }
 
   updateUserInfo(newInfo){
-    return fetch(this.baseUrl + '/users/me', {
-      headers: {...this.headers, 'content-type':'application/json'},
+    return fetch(this._baseUrl + '/users/me', {
+      headers: {...this._headers, 'content-type':'application/json'},
       method: 'PATCH',
       body: JSON.stringify(newInfo)
     })
@@ -39,10 +39,19 @@ export default class Api {
   }
 
   addCard(newCard){
-    return fetch(this.baseUrl + '/cards', {
-      headers: {...this.headers, 'content-type':'application/json'},
+    return fetch(this._baseUrl + '/cards', {
+      headers: {...this._headers, 'content-type':'application/json'},
       method: 'POST',
       body: JSON.stringify(newCard)
+    })
+      .then(res => {console.log(res); return this._parseResponse(res)})
+      .catch(err => Promise.reject(err));
+  }
+
+  deleteCard(cardId){
+    return fetch(this._baseUrl + '/cards/' + cardId, {
+      headers: this._headers,
+      method: 'DELETE'
     })
       .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));

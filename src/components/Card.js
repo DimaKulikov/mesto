@@ -2,7 +2,7 @@
  * Represents a card 
  */
 export default class Card {
-  constructor({ data, templateSelector, clickHandler, deleteHandler }) {
+  constructor({ data, templateSelector, clickHandler, deleteIconClickHandler }) {
     this._templateSelector = templateSelector;
     this._id = data._id;
     this._likes = data.likes;
@@ -11,7 +11,7 @@ export default class Card {
     this._link = data.link;
     this._isLiked = false;
     this._imageClickHandler = clickHandler;
-    // this._deleteHandler = deleteHandler.bind(this);
+    this._deleteIconClickHandler = deleteIconClickHandler
   }
 
   _getTemplate() {
@@ -39,7 +39,7 @@ export default class Card {
       this._handleLike()
     })
     this._removeBtn.addEventListener('click', () => {
-      this._deleteHandler(this)
+      this._deleteIconClickHandler(this._id)
     })
     this._image.addEventListener('click', () => {
       this._imageClickHandler(this._name, this._link)
@@ -62,7 +62,6 @@ export default class Card {
     this._title.textContent = this._name;
     this._likeCount.textContent = this._likes.length
     this._setEventListeners()
-    console.log(this)
     return this._element
   }
 }

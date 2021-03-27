@@ -79,7 +79,7 @@ const cardsList = new Section({
       data,
       templateSelector: '#card-template',   
       clickHandler: () => imagePopup.open(data),
-      deleteHandler: () => confirmRemovePopup.open()
+      deleteIconClickHandler: (cardId) => api.deleteCard(cardId)
     }) 
     const cardElement = card.createCard()   
     cardsList.addItem(cardElement)
@@ -114,9 +114,9 @@ const profilePopup = new PopupWithForm({
   submitHandler: () => {
     api.updateUserInfo(profilePopup.getInputValues())
       .then(data => {
-        userInfo.updateUserData(data)
+        userInfo.updateUserData(data)        
+        profilePopup.close()
       })
-    profilePopup.close()
   }
 })
 profilePopup.setEventListeners()
@@ -136,11 +136,13 @@ const placePopup = new PopupWithForm({
   submitHandler: () => {
     const cardData = placePopup.getInputValues()
     api.addCard(cardData)
-      .then(() => {
+      .then((res) => {
+        console.log(res)
         const card = new Card({
-          data: cardData,
+          data: res,
           templateSelector: '#card-template',
-          clickHandler: () => imagePopup.open(cardData)
+          clickHandler: () => imagePopup.open(res),
+          deleteIconClickHandler: (cardId) => api.deleteCard(cardId)
         })
         const cardElement = card.createCard()
         cardsList.addItem(cardElement)
@@ -150,22 +152,6 @@ const placePopup = new PopupWithForm({
   }
 })
 placePopup.setEventListeners()
-
-// 
-
-/**
- * Popup confirmation on deleting a card
- */
-const confirmRemovePopup = new PopupWithForm({
-  popupSelector: '.popup_place-remove',
-  submitHandler: (e) => {
-    e.preventDefault();
-    confirmRemovePopup.close()
-    console.log(e)
-    //Api.removeCard(cardId) ???
-  }
-})
-confirmRemovePopup.setEventListeners();
 
 
 

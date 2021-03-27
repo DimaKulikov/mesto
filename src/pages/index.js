@@ -39,6 +39,27 @@ profileEditValidator.enableValidation()
 placeAddValidator.enableValidation()
 
 
+
+
+/**
+ *
+ * API
+ *
+ */
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  headers: {
+    authorization: 'a6be0e39-3b40-440d-b51a-2e6c0105cc3c',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards().then(data => console.log('rendering ', data))
+
+
+
+
 /**
  * API
  */

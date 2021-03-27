@@ -7,6 +7,7 @@ import Section from '../components/Section'
 import PopupWithImage from '../components/PopupWithImage'
 import PopupWithForm from '../components/PopupWithForm'
 import UserInfo from '../components/UserInfo'
+import Api from '../components/Api'
 
 /**
  * Import constants
@@ -38,8 +39,31 @@ profileEditValidator.enableValidation()
 placeAddValidator.enableValidation()
 
 
+
+
 /**
- * Initialise user information component
+ *
+ * API
+ *
+ */
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  headers: {
+    authorization: 'a6be0e39-3b40-440d-b51a-2e6c0105cc3c',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards().then(data => console.log('rendering ', data))
+
+
+
+
+/**
+ *
+ * User Information
+ *
  */
 const userInfo = new UserInfo({
   nameSelector: '.profile__name', 
@@ -51,12 +75,15 @@ const userInfo = new UserInfo({
  * Create a section containing the list of cards (pictures of places)
  */
 const cardsList = new Section({
-  data: initialCards, 
+
+  initData: initialCards,
   /**
    * Passing in a renderer callback function to render each element in this section. The elements are instances of the Card class
    * @param {object} data An object with the data for a card. Must contain 'name' and 'link' properties
    */
-  renderer: (data) => {
+  renderer: () => {
+    const data = api.getInitialCards()
+    console.log(data)
     const card = new Card({
       data, 
       templateSelector: '#card-template',
@@ -75,12 +102,16 @@ const cardsList = new Section({
   containerSelector: '.cards__list'
 })
 
+console.log(cardsList)
+
 // Render the initial cards passed in to the section's constructor as the 'data' parameter
 cardsList.renderItems();
 
 
 /**
+ *
  * Popups
+ *
  */
 /**
  * Creating an instance of a PopupWithForm for the profile editing popup. 
@@ -133,13 +164,11 @@ const confirmRemovePopup = new PopupWithForm({
     e.preventDefault();
     confirmRemovePopup.close()
     console.log(e)
-    console.log(this.
     //Api.removeCard(cardId) ???
   }
 })
-confirmRemovePopup.setEventListeners();
-confirmRemovePopup.open()
-
+// confirmRemovePopup.setEventListeners();
+// confirmRemovePopup.open()
 
 /**
  * Event listeners for static elements
@@ -155,6 +184,8 @@ placeAddBtn.addEventListener('click', () => {
   placeAddValidator.toggleButtonState()
   placePopup.open()
 })
+
+
 
 
 

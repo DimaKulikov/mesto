@@ -30,7 +30,7 @@ export default class Api {
 
   updateUserInfo(newInfo){
     return fetch(this.baseUrl + '/users/me', {
-      headers: this.headers,
+      headers: {...this.headers, 'content-type':'application/json'},
       method: 'PATCH',
       body: JSON.stringify(newInfo)
     })
@@ -39,7 +39,6 @@ export default class Api {
   }
 
   addCard(newCard){
-    console.log(newCard)
     return fetch(this.baseUrl + '/cards', {
       headers: {...this.headers, 'content-type':'application/json'},
       method: 'POST',

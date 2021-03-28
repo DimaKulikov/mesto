@@ -2,7 +2,7 @@
  * Represents a card 
  */
 export default class Card {
-  constructor({ data, templateSelector, clickHandler, deleteIconClickHandler, likeClickHandler }) {
+  constructor({ data, templateSelector, clickHandler, deleteIconClickHandler, likeClickHandler}) {
     this._templateSelector = templateSelector;
     this.id = data._id;
     this._likes = data.likes;
@@ -12,7 +12,7 @@ export default class Card {
     this._isLiked = false;
     this._imageClickHandler = clickHandler;
     this._deleteIconClickHandler = deleteIconClickHandler;
-    this._likeClickHandler = likeClickHandler
+    this._likeClickHandler = likeClickHandler;
   }
 
   _getTemplate() {
@@ -63,7 +63,12 @@ export default class Card {
     this.toggleLikeButton()
   }
 
-  createCard() {     
+  removeDeleteButton(){
+    this._removeBtn.remove()
+    this._removeBtn = null
+  }
+
+  createCard() {
     this._getElements()
     this._image.src = this._link;
     this._image.alt = this._name;

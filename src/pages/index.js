@@ -96,6 +96,9 @@ const cardsList = new Section({
       }
     }) 
     const cardElement = card.createCard()
+    if (card.owner._id !== userInfo._userData._id) {
+      card.removeDeleteButton()
+    }
     if (card._likes.some(likeObj => likeObj._id === userInfo._userData._id)) {
       card.toggleLikeButton()
     }

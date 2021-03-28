@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "devBuild": "cross-env NODE_ENV=development webpack --mode production",
-    "server": "cross-env NODE_ENV=development webpack serve",
-    "jsdoc": "jsdoc ./src/pages/index.js -c ./jsdoc.config.js -r"
+    "dev": "cross-env NODE_ENV=development webpack serve",
+    "build-no-babel": "cross-env NODE_ENV=development webpack --mode production"
   },
   "repository": {
     "type": "git",

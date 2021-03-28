@@ -6,13 +6,13 @@ import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section'
 import PopupWithImage from '../components/PopupWithImage'
 import PopupWithForm from '../components/PopupWithForm'
+import PopupWithConfirm from '../components/PopupWithConfirm'
 import UserInfo from '../components/UserInfo'
 import Api from '../components/Api'
 
 /**
  * Import constants
  */
-import { initialCards } from '../utils/data.js'
 import { validatorOptions } from '../utils/constants.js'
 
 /**
@@ -23,7 +23,7 @@ import '../pages/index.css'
 import '../dev.css'
 
 /**
- * Get the necessary DOM elements
+ * DOM elements
  */
 const profileEditBtn = document.querySelector('.profile__edit-btn')
 const profileEditForm = document.querySelector('form[name=profileEditForm]')
@@ -46,7 +46,7 @@ placeAddValidator.enableValidation()
  */
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21', 
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
   headers: {
     authorization: 'a6be0e39-3b40-440d-b51a-2e6c0105cc3c'
   }})
@@ -77,11 +77,21 @@ const cardsList = new Section({
   renderer: (data) => {
     const card = new Card({
       data,
-      templateSelector: '#card-template',   
+      templateSelector: '#card-template',
       clickHandler: () => imagePopup.open(data),
-      deleteIconClickHandler: (cardId) => api.deleteCard(cardId)
+      deleteIconClickHandler: deleteCardHandler,
+      likeClickHandler: (card) => {
+        const action = card._isLiked ? api.deleteLike : api.putLike
+        action(card.id)
+          .then((resp) => {
+            card.updateLike(resp)
+          })
+      }
     }) 
-    const cardElement = card.createCard()   
+    const cardElement = card.createCard()
+    if (card._likes.some(likeObj => likeObj._id === userInfo._userData._id)) {
+      card.toggleLikeButton()
+    }
     cardsList.addItem(cardElement)
   },
   containerSelector: '.cards__list'
@@ -90,7 +100,7 @@ const cardsList = new Section({
  * Getting cards from the server
 */
 api.getInitialCards()
-  .then(data=> {    
+  .then(data=> {
     cardsList.renderItems(data.reverse())
   })
   .catch(err => {
@@ -101,9 +111,7 @@ api.getInitialCards()
 
 
 /**
- * 
  * Popups
- * 
  */
 
 /**
@@ -114,7 +122,7 @@ const profilePopup = new PopupWithForm({
   submitHandler: () => {
     api.updateUserInfo(profilePopup.getInputValues())
       .then(data => {
-        userInfo.updateUserData(data)        
+        userInfo.updateUserData(data)
         profilePopup.close()
       })
   }
@@ -136,13 +144,19 @@ const placePopup = new PopupWithForm({
   submitHandler: () => {
     const cardData = placePopup.getInputValues()
     api.addCard(cardData)
-      .then((res) => {
-        console.log(res)
+      .then((data) => {
         const card = new Card({
-          data: res,
+          data,
           templateSelector: '#card-template',
-          clickHandler: () => imagePopup.open(res),
-          deleteIconClickHandler: (cardId) => api.deleteCard(cardId)
+          clickHandler: () => imagePopup.open(data),
+          deleteIconClickHandler: deleteCardHandler,
+          likeClickHandler: (card) => {
+            let action = card.isLiked ? api.deleteLike : api.putLike
+            action(card.id)
+              .then((resp) => {
+                card.updateLike(resp)
+              })
+          }
         })
         const cardElement = card.createCard()
         cardsList.addItem(cardElement)
@@ -153,12 +167,18 @@ const placePopup = new PopupWithForm({
 })
 placePopup.setEventListeners()
 
+/**
+ * Card delete popup
+ */
+const deleteConfirmation = new PopupWithConfirm({
+  popupSelector: '.popup_place-remove'
+})
+deleteConfirmation.setEventListeners()
 
 
 /**
  * Event listeners for static elements
  */
-
 profileEditBtn.addEventListener('click', () => {
   profilePopup.open()
   profilePopup.setInputValues(userInfo.getUserInfo())
@@ -171,3 +191,16 @@ placeAddBtn.addEventListener('click', () => {
 })
 
 
+/**
+ * Helpers
+ */
+
+function deleteCardHandler(card) {
+  deleteConfirmation.setSubmitAction(()=>{
+    api.deleteCard(card.id).then(()=>{
+      card.removeCard()
+      deleteConfirmation.close()
+    })
+  })   
+  deleteConfirmation.open()     
+}

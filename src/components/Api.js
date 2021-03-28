@@ -11,7 +11,7 @@ export default class Api {
       return res.json();
     }
 
-    return Promise.reject(`Произошла ошибка со статус-кодом ${res.status}`);
+    return Promise.reject(`Ошибка запроса на сервер ${res.status}`);
   }
 
   getInitialCards(){

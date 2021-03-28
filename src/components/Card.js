@@ -57,7 +57,6 @@ export default class Card {
   }
 
   updateLike(cardData) {
-    console.log(this, cardData)
     this._likes = cardData.likes
     this._likeCount.textContent = this._likes.length
     this.toggleLikeButton()

@@ -193,7 +193,10 @@ placePopup.setEventListeners()
  * Card delete popup
  */
 const deleteConfirmation = new PopupWithConfirm({
-  popupSelector: '.popup_place-remove'
+  popupSelector: '.popup_place-remove',
+  submitButtonSelector: '.form__submit', 
+  submitProgressText: 'Удаление...', 
+  formSelector: '.form'
 })
 deleteConfirmation.setEventListeners()
 
@@ -242,8 +245,10 @@ placeAddBtn.addEventListener('click', () => {
 
 function deleteCardHandler(card) {
   deleteConfirmation.setSubmitAction(()=>{
+    deleteConfirmation.renderSubmitProgress(true)
     api.deleteCard(card.id).then(()=>{
       card.removeCard()
+      deleteConfirmation.renderSubmitProgress(false)
       deleteConfirmation.close()
     })
   })   

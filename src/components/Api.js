@@ -46,7 +46,7 @@ export default class Api {
       method: 'POST',
       body: JSON.stringify(newCard)
     })
-      .then(res => {console.log(res); return this._parseResponse(res)})
+      .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));
   }
 

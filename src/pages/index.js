@@ -2,7 +2,7 @@
  * Import components
  */
 import Card from '../components/Card.js'
-import FormValidator from '../components/FormValidator.js'
+import FormValidator from '../components/FormValidator'
 import Section from '../components/Section'
 import PopupWithImage from '../components/PopupWithImage'
 import PopupWithForm from '../components/PopupWithForm'
@@ -13,7 +13,7 @@ import Api from '../components/Api'
 /**
  * Import constants
  */
-import { validatorOptions } from '../utils/constants.js'
+import { validatorOptions } from '../utils/constants'
 
 /**
  * Import CSS
@@ -216,7 +216,7 @@ placeAddBtn.addEventListener('click', () => {
  * Helpers
  */
 
-function deleteCardHandler(card) {
+ function deleteCardHandler(card) {
   deleteConfirmation.setSubmitAction(()=>{
     deleteConfirmation.renderSubmitProgress(true)
     api.deleteCard(card.id).then(()=>{
@@ -256,3 +256,4 @@ function placeSubmitHandler() {
     })
     .catch(err => {console.error('Ошибка при добавлении карточки:', err)})
 }
+

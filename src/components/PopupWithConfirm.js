@@ -25,8 +25,10 @@ export default class PopupWithConfirm extends Popup {
   renderSubmitProgress(inProgress) {
     if (inProgress) {
       this._submitButton.textContent = this._submitButtonProgressText
+      this._submitButton.disabled = true
     } else {
       this._submitButton.textContent = this._submitButtonDefaultText
+      this._submitButton.disabled = false
     }
   }
 }

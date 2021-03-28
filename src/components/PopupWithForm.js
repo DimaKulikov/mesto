@@ -1,13 +1,15 @@
 import Popup from './Popup'
 
 export default class PopupWithForm extends Popup{
-  constructor({ popupSelector, submitHandler }) {
-    super(popupSelector)
-    this._submitHandler = submitHandler
-    this._submitHandler = this._submitHandler.bind(this)
-    this._form = this._popup.querySelector('.form')
-    this._inputs = this._form.querySelectorAll('.form__input')
-    this._data = {}
+  constructor({ popupSelector, submitHandler, submitButtonSelector, submitProgressText, formSelector, inputFieldSelector }) {
+    super(popupSelector);
+    this._submitHandler = submitHandler.bind(this);
+    this._form = this._popup.querySelector(formSelector);
+    this._submitButton = this._form.querySelector(submitButtonSelector);
+    this._submitButtonDefaultText = this._submitButton.textContent;
+    this._submitButtonProgressText = submitProgressText;
+    this._inputs = this._form.querySelectorAll(inputFieldSelector);
+    this._data = {};
   }
 
   close(){
@@ -29,5 +31,13 @@ export default class PopupWithForm extends Popup{
     this._inputs.forEach(input => {
       input.value = data[input.name]
     })
+  }
+
+  renderSubmitProgress(inProgress) {
+    if (inProgress) {
+      this._submitButton.textContent = this._submitButtonProgressText
+    } else {
+      this._submitButton.textContent = this._submitButtonDefaultText
+    }
   }
 }

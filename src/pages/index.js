@@ -128,12 +128,18 @@ api.getInitialCards()
  * Profile editing popup
  */
 const profilePopup = new PopupWithForm({
+  submitButtonSelector: '.form__submit', 
+  submitProgressText: 'Сохранение...', 
+  formSelector: '.form', 
+  inputFieldSelector: '.form__input',
   popupSelector: '.popup_profile-edit',
   submitHandler: () => {
+    profilePopup.renderSubmitProgress(true)
     api.updateUserInfo(profilePopup.getInputValues())
       .then(data => {
         userInfo.updateUserData(data)
         profilePopup.close()
+        profilePopup.renderSubmitProgress(false)
       })
   }
 })
@@ -150,9 +156,14 @@ imagePopup.setEventListeners()
  * Place add popup
  */
 const placePopup = new PopupWithForm({
+  submitButtonSelector: '.form__submit', 
+  submitProgressText: 'Сохранение...', 
+  formSelector: '.form', 
+  inputFieldSelector: '.form__input',
   popupSelector: '.popup_place-add',
   submitHandler: () => {
     const cardData = placePopup.getInputValues()
+    placePopup.renderSubmitProgress(true)
     api.addCard(cardData)
       .then((data) => {
         const card = new Card({
@@ -170,6 +181,7 @@ const placePopup = new PopupWithForm({
         })
         const cardElement = card.createCard()
         cardsList.addItem(cardElement)
+        placePopup.renderSubmitProgress(false)
         placePopup.close()
       })
     
@@ -189,13 +201,19 @@ deleteConfirmation.setEventListeners()
  * Avatar edit popup
  */
 const avatarEdit = new PopupWithForm({
+  submitButtonSelector: '.form__submit', 
+  submitProgressText: 'Сохранение...', 
+  formSelector: '.form', 
+  inputFieldSelector: '.form__input',
   popupSelector: '.popup_avatar-edit',
   submitHandler: () => {
     const formData = avatarEdit.getInputValues()
+    avatarEdit.renderSubmitProgress(true)
     api.updateAvatar(formData)
       .then((resp) => {
         console.log(resp)
         userInfo.updateUserData(resp)
+        avatarEdit.renderSubmitProgress(false)
         avatarEdit.close()
       })
   }

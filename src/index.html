@@ -70,9 +70,23 @@
   <div class="popup popup_place-remove">
     <div class="popup__container">
       <button class="popup__close-btn" type="button" aria-label="закрыть"></button>
-      <form class="form" novalidate>
+      <form class="form">
         <h2 class="form__title">Вы уверены?</h2>
         <button class="form__submit" type="submit">Да</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_avatar-edit">
+    <div class="popup__container">
+      <button class="popup__close-btn" type="button" aria-label="закрыть"></button>
+      <form class="form" name="avatarEditForm" novalidate>
+        <h2 class="form__title">Обновить аватар</h2>
+        <input class="form__input" type="url" id="avatar-link-input" name="avatar" placeholder="Ссылка на аватар" required
+          autocomplete="off" >
+        <span class="form__error avatar-link-input-error"></span>
+        
+        <button class="form__submit form__submit_disabled" type="submit">Сохранить
+        </button>
       </form>
     </div>
   </div>

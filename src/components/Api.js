@@ -76,4 +76,14 @@ export default class Api {
       .then(res => this._parseResponse(res))
       .catch(err => Promise.reject(err));
   }
+
+  updateAvatar(avatar){
+    return fetch(this._baseUrl + '/users/me/avatar', {
+      headers: {...this._headers, 'content-type':'application/json'},
+      method: 'PATCH',
+      body: JSON.stringify(avatar)
+    })
+      .then(res => this._parseResponse(res))
+      .catch(err => Promise.reject(err));
+  }
 }

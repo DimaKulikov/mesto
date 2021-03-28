@@ -3,10 +3,11 @@
  */
 
 export default class UserInfo {
-  constructor({nameSelector, infoSelector}){
+  constructor({nameSelector, infoSelector, avatarSelector, avatarClickHandler}){
     this._nameContainer = document.querySelector(nameSelector);
     this._infoContainer = document.querySelector(infoSelector);
-
+    this._avatarContainer = document.querySelector(avatarSelector);
+    this._avatarClickHandler = avatarClickHandler
 
   }
 
@@ -14,13 +15,20 @@ export default class UserInfo {
     return {name: this._userData.name, about: this._userData.about}
   }
  
-  renderUserInfo(){
+  _renderUserInfo(){
     this._nameContainer.textContent = this._userData.name;
     this._infoContainer.textContent = this._userData.about;
-  }
+    this._avatarContainer.style.backgroundImage = `url(${this._userData.avatar})`
+  }  
 
   updateUserData(data){
     this._userData = data
-    this.renderUserInfo()
+    this._renderUserInfo()
+  }
+
+  setEventListeners() {
+    this._avatarContainer.addEventListener('click', () => {
+      this._avatarClickHandler()
+    })
   }
 }

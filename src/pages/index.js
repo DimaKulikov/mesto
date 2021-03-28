@@ -29,15 +29,17 @@ const profileEditBtn = document.querySelector('.profile__edit-btn')
 const profileEditForm = document.querySelector('form[name=profileEditForm]')
 const placeAddBtn = document.querySelector('.profile__add-btn')
 const placeAddForm = document.querySelector('form[name=placeAddForm]')
+const avatarEditForm = document.querySelector('form[name=avatarEditForm]')
 
 /**
  * Form validators
  */
 const profileEditValidator = new FormValidator(validatorOptions, profileEditForm)
 const placeAddValidator = new FormValidator(validatorOptions, placeAddForm)
+const avatarEditValidator = new FormValidator(validatorOptions, avatarEditForm)
 profileEditValidator.enableValidation()
 placeAddValidator.enableValidation()
-
+avatarEditValidator.enableValidation()
 
 
 
@@ -59,7 +61,12 @@ const api = new Api({
 const userInfo = new UserInfo({
   nameSelector: '.profile__name', 
   infoSelector: '.profile__subtitle',
+  avatarSelector: '.profile__avatar',
+  avatarClickHandler: () => {
+    avatarEdit.open()
+  }
 })
+userInfo.setEventListeners()
 
 api.getUserInfo()
   .then(userData => {
@@ -175,6 +182,23 @@ const deleteConfirmation = new PopupWithConfirm({
 })
 deleteConfirmation.setEventListeners()
 
+/**
+ * Avatar edit popup
+ */
+const avatarEdit = new PopupWithForm({
+  popupSelector: '.popup_avatar-edit',
+  submitHandler: () => {
+    const formData = avatarEdit.getInputValues()
+    api.updateAvatar(formData)
+      .then((resp) => {
+        console.log(resp)
+        userInfo.updateUserData(resp)
+        avatarEdit.close()
+      })
+  }
+})
+avatarEdit.setEventListeners()
+
 
 /**
  * Event listeners for static elements
@@ -204,3 +228,4 @@ function deleteCardHandler(card) {
   })   
   deleteConfirmation.open()     
 }
+

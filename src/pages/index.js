@@ -200,7 +200,7 @@ function makeCard(userId, cardObject) {
     data: cardObject,
     userId: userId,
     templateSelector: '#card-template',
-    clickHandler: () => imagePopup.open(cardObject),
+    imageClickHandler: () => imagePopup.open(cardObject),
     deleteIconClickHandler: deleteCardHandler,
     likeClickHandler: cardLikeHandler
   })
@@ -223,7 +223,7 @@ function deleteCardHandler(card) {
 }
 
 function cardLikeHandler(card){
-  const action = card._isLiked ? api.deleteLike : api.putLike
+  const action = card.isLiked() ? api.deleteLike : api.putLike
   action(card.id)
     .then((resp) => {
       card.updateLike(resp)

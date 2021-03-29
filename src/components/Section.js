@@ -2,9 +2,9 @@
  * A class representing a section that can append items to itself
  */
 export default class Section {
-  constructor({renderer, containerSelector}){   
+  constructor({ renderer, containerSelector, initData }) {
     this._container = document.querySelector(containerSelector)
-    this.initData = []
+    this.initData = initData
     this._renderer = renderer
   }
 

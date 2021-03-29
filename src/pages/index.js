@@ -73,7 +73,7 @@ userInfo.setEventListeners()
  * List of cards
  */
 const cardsList = new Section({
-  data: [], 
+  initData: [],
   renderer: (cardObject) => {
     const card = makeCard(userInfo.getUserId(), cardObject)
     const cardElement = card.createCard()

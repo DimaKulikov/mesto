@@ -45,14 +45,14 @@ export default class Card {
       })
     }
   }
-
-  isLiked() {
-    return this._isLiked
-  }
-
-  toggleLikeButton() {
+  
+  _toggleLikeButton() {
     this._isLiked = !this._isLiked
     this._likeBtn.classList.toggle('card__like-btn_active')
+  }
+
+  getIsLiked() {
+    return this._isLiked
   }
 
   removeCard() {
@@ -64,12 +64,10 @@ export default class Card {
     this._removeBtn = null;
   }
 
-
-
   updateLike(cardData) {
     this._likes = cardData.likes
     this._likeCount.textContent = this._likes.length
-    this.toggleLikeButton()
+    this._toggleLikeButton()
   }
 
   createCard() {

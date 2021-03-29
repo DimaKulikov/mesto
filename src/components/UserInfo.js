@@ -12,18 +12,18 @@ export default class UserInfo {
 
   }
 
+  _renderUserInfo() {
+    this._nameContainer.textContent = this._userData.name;
+    this._infoContainer.textContent = this._userData.about;
+    this._avatarContainer.style.backgroundImage = `url(${this._userData.avatar})`
+  }
+
   getUserInfo(){
     return {name: this._userData.name, about: this._userData.about}
   }
 
   getUserId() {
     return this._userData._id
-  }
-
-  _renderUserInfo(){
-    this._nameContainer.textContent = this._userData.name;
-    this._infoContainer.textContent = this._userData.about;
-    this._avatarContainer.style.backgroundImage = `url(${this._userData.avatar})`
   }  
 
   updateUserData(data){

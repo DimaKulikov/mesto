@@ -53,7 +53,8 @@ const api = new Api({
     authorization: 'a6be0e39-3b40-440d-b51a-2e6c0105cc3c'
   }})
 
- 
+
+
 
 /**
  * User information
@@ -68,14 +69,6 @@ const userInfo = new UserInfo({
 })
 userInfo.setEventListeners()
 
-api.getUserInfo()
-  .then(userData => {
-    userInfo.updateUserData(userData)
-  })
-  .catch(err => console.error('Ошибка при получении данных пользователя:', err))
-
-
-
 /**
  * List of cards
  */
@@ -88,17 +81,15 @@ const cardsList = new Section({
   },
   containerSelector: '.cards__list'
 })
-/** 
- * Getting cards from the server
-*/
-api.getInitialCards()
-  .then(data=> {
-    cardsList.renderItems(data.reverse())
-  })
-  .catch(err => {
-    console.error('Ошибка при загрузке карточек:', err);
-  });
 
+/**
+ * Get initial cards and user info
+ */
+Promise.all([api.getInitialCards(), api.getUserInfo()]).then(res => {
+  const [cardsArray, userData] = res;
+  userInfo.updateUserData(userData)
+  cardsList.renderItems(cardsArray.reverse())
+}).catch(err => console.error('Ошибка получения карточек и данных пользователя: ', err))
 
 
 
@@ -175,7 +166,6 @@ const avatarEdit = new PopupWithForm({
     avatarEdit.renderSubmitProgress(true)
     api.updateAvatar(formData)
       .then((resp) => {
-        console.log(resp)
         userInfo.updateUserData(resp)
         avatarEdit.close()
       })

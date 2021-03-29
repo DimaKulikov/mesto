@@ -1,17 +1,6 @@
-/**
- * @requires Popup
- */
 import Popup from './Popup'
 
-/**
- * Represents a popup with an image
- * @extends Popup
- */
-export default class PopupWithImage extends Popup{
-  /**
-   * Creates a popup instance
-   * @param {string} popupSelector css selector for the popup container
-   */
+export default class PopupWithImage extends Popup {
   constructor(popupSelector){
     super(popupSelector)
     this._image = this._popup.querySelector('.popup__image')
@@ -19,10 +8,6 @@ export default class PopupWithImage extends Popup{
     
   }
 
-  /**
-   * Extends the parent's method to display a picture in the popup
-   * @param {object} param0 object containing data to be displated in the popup . Must contain "name" and "link" keys
-   */
   open({name, link}){
     super.open()    
     this._image.src = '#'
@@ -30,7 +15,5 @@ export default class PopupWithImage extends Popup{
     this._subtitle.textContent = name 
   }
 
-  close() {
-    super.close();
-  }
+
 }

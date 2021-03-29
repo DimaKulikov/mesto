@@ -82,7 +82,7 @@ api.getUserInfo()
 const cardsList = new Section({
   data: [], 
   renderer: (cardObject) => {
-    const card = makeCard(userInfo._userData._id, cardObject)
+    const card = makeCard(userInfo.getUserId(), cardObject)
     const cardElement = card.createCard()
     cardsList.addItem(cardElement)
   },
@@ -121,9 +121,11 @@ const profilePopup = new PopupWithForm({
       .then(data => {
         userInfo.updateUserData(data)
         profilePopup.close()
-        profilePopup.renderSubmitProgress(false)
       })
       .catch(err => console.error('Ошибка при обновлении данных пользователя:', err))
+      .finally(() => {
+        profilePopup.renderSubmitProgress(false)
+      })
   }
 })
 profilePopup.setEventListeners()
@@ -175,10 +177,12 @@ const avatarEdit = new PopupWithForm({
       .then((resp) => {
         console.log(resp)
         userInfo.updateUserData(resp)
-        avatarEdit.renderSubmitProgress(false)
         avatarEdit.close()
       })
       .catch(err => console.error('Ошибка при обновлении аватара: ', err))
+      .finally(() => {
+        avatarEdit.renderSubmitProgress(false)
+      })
   }
 })
 avatarEdit.setEventListeners()
@@ -218,10 +222,13 @@ function deleteCardHandler(card) {
     deleteConfirmation.renderSubmitProgress(true)
     api.deleteCard(card.id).then(()=>{
       card.removeCard()
-      deleteConfirmation.renderSubmitProgress(false)
       deleteConfirmation.close()
     })
-  })   
+      .catch(err => console.error('Ошибка при удалении карточки:', err))
+      .finally(() => {
+        deleteConfirmation.renderSubmitProgress(false)
+      })
+  })
   deleteConfirmation.open()     
 }
 
@@ -239,11 +246,13 @@ function placeSubmitHandler() {
   placePopup.renderSubmitProgress(true)
   api.addCard(cardData)
     .then((cardObject) => {
-      const card = makeCard(userInfo._userData._id, cardObject)
+      const card = makeCard(userInfo.getUserId(), cardObject)
       const cardElement = card.createCard()
-      cardsList.addItem(cardElement)
-      placePopup.renderSubmitProgress(false)
+      cardsList.addItem(cardElement)      
       placePopup.close()
     })
-    .catch(err => {console.error('Ошибка при добавлении карточки:', err)})
+    .catch(err => { console.error('Ошибка при добавлении карточки:', err) })
+    .finally(() => {
+      placePopup.renderSubmitProgress(false)
+    })
 }

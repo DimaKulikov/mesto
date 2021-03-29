@@ -76,27 +76,14 @@ api.getUserInfo()
 
 
 
-
 /**
  * List of cards
  */
 const cardsList = new Section({
   data: [], 
-  renderer: (data) => {
-    const card = new Card({
-      data,
-      templateSelector: '#card-template',
-      clickHandler: () => imagePopup.open(data),
-      deleteIconClickHandler: deleteCardHandler,
-      likeClickHandler: cardLikeHandler
-    }) 
+  renderer: (cardObject) => {
+    const card = makeCard(userInfo._userData._id, cardObject)
     const cardElement = card.createCard()
-    if (card.owner._id !== userInfo._userData._id) {
-      card.removeDeleteButton()
-    }
-    if (card._likes.some(likeObj => likeObj._id === userInfo._userData._id)) {
-      card.toggleLikeButton()
-    }
     cardsList.addItem(cardElement)
   },
   containerSelector: '.cards__list'
@@ -207,7 +194,6 @@ profileEditBtn.addEventListener('click', () => {
 
 
 placeAddBtn.addEventListener('click', () => {
-  placeAddValidator.toggleButtonState()
   placePopup.open()
 })
 
@@ -215,8 +201,19 @@ placeAddBtn.addEventListener('click', () => {
 /**
  * Helpers
  */
+function makeCard(userId, cardObject) {
+  const card = new Card({
+    data: cardObject,
+    userId: userId,
+    templateSelector: '#card-template',
+    clickHandler: () => imagePopup.open(cardObject),
+    deleteIconClickHandler: deleteCardHandler,
+    likeClickHandler: cardLikeHandler
+  })
+  return card
+}
 
- function deleteCardHandler(card) {
+function deleteCardHandler(card) {
   deleteConfirmation.setSubmitAction(()=>{
     deleteConfirmation.renderSubmitProgress(true)
     api.deleteCard(card.id).then(()=>{
@@ -241,14 +238,8 @@ function placeSubmitHandler() {
   const cardData = placePopup.getInputValues()
   placePopup.renderSubmitProgress(true)
   api.addCard(cardData)
-    .then((data) => {
-      const card = new Card({
-        data,
-        templateSelector: '#card-template',
-        clickHandler: () => imagePopup.open(data),
-        deleteIconClickHandler: deleteCardHandler,
-        likeClickHandler: cardLikeHandler
-      })
+    .then((cardObject) => {
+      const card = makeCard(userInfo._userData._id, cardObject)
       const cardElement = card.createCard()
       cardsList.addItem(cardElement)
       placePopup.renderSubmitProgress(false)
@@ -256,4 +247,3 @@ function placeSubmitHandler() {
     })
     .catch(err => {console.error('Ошибка при добавлении карточки:', err)})
 }
-

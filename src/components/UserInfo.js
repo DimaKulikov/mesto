@@ -1,7 +1,3 @@
-/**
- * A class displaying and managing user information on the page
- */
-
 export default class UserInfo {
   constructor({nameSelector, infoSelector, avatarSelector, avatarClickHandler}){
     this._nameContainer = document.querySelector(nameSelector);
@@ -9,7 +5,6 @@ export default class UserInfo {
     this._avatarContainer = document.querySelector(avatarSelector);
     this._avatarClickHandler = avatarClickHandler;
     this._userData;
-
   }
 
   _renderUserInfo() {

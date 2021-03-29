@@ -5,7 +5,6 @@ export default class PopupWithImage extends Popup {
     super(popupSelector)
     this._image = this._popup.querySelector('.popup__image')
     this._subtitle = this._popup.querySelector('.popup__subtitle')
-    
   }
 
   open({name, link}){
@@ -14,6 +13,4 @@ export default class PopupWithImage extends Popup {
     this._image.src = link 
     this._subtitle.textContent = name 
   }
-
-
 }

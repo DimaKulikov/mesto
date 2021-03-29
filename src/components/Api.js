@@ -10,7 +10,6 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-
     return Promise.reject(`Ошибка запроса на сервер ${res.status}`);
   }
 

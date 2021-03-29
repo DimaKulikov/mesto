@@ -1,6 +1,3 @@
-/**
- * Represents a card 
- */
 export default class Card {
   constructor({ data, templateSelector, imageClickHandler, deleteIconClickHandler, likeClickHandler, userId }) {
     this._templateSelector = templateSelector;
@@ -22,7 +19,6 @@ export default class Card {
     return element
   }
 
-  
   _getElements() {
     this._element = this._getTemplate();
     this._image = this._element.querySelector('.card__pic');

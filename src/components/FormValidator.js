@@ -54,7 +54,7 @@ export default class FormValidator {
   /**
    * Adds or removes 'disabled' attribute and class modifier on the form's submit button 
    */
-  toggleButtonState() {
+  _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
       this._button.classList.add(this._selectors.inactiveButtonClass);
       this._button.disabled = true;
@@ -72,7 +72,7 @@ export default class FormValidator {
     this._currentInput = e.target
     this._errorContainer = this._form.querySelector(`.${this._currentInput.id}-error`);
     this._isValid();
-    this.toggleButtonState();
+    this._toggleButtonState();
   }
 
   /**
@@ -84,14 +84,22 @@ export default class FormValidator {
   }
 
   /**
-   * Sets 'input' and 'submit' event listeners in the process of initialising the validator
+   * Sets 'input','submit' and 'reset' event listeners in the process of initialising the validator
    */
   _setEventListeners() {    
     this._inputList.forEach(input => {
       input.addEventListener('input', (e) => { this._inputChangeHandler(e) });
     })
+    this._form.addEventListener('submit', (e) => { this._submitHandler(e) });
+    this._form.addEventListener('reset', () => {
+      this._toggleButtonState();
+      this._inputList.forEach((inputElement) => {
+        this._currentInput = inputElement;
+        this._errorContainer = this._form.querySelector(`.${this._currentInput.id}-error`);
+        this._hideInputError()
+      })
+    })
 
-    this._form.addEventListener('submit', (e) => { this._submitHandler(e) })
   }
 
   /**

@@ -19,7 +19,6 @@ export default class Api {
       headers: this._headers
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   getUserInfo(){
@@ -27,7 +26,6 @@ export default class Api {
       headers: this._headers
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   updateUserInfo(newInfo){
@@ -37,7 +35,6 @@ export default class Api {
       body: JSON.stringify(newInfo)
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   addCard(newCard){
@@ -47,7 +44,6 @@ export default class Api {
       body: JSON.stringify(newCard)
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   deleteCard(cardId){
@@ -56,7 +52,6 @@ export default class Api {
       method: 'DELETE'
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   putLike(cardId){
@@ -65,7 +60,6 @@ export default class Api {
       method: 'PUT'
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   deleteLike(cardId){
@@ -74,7 +68,6 @@ export default class Api {
       method: 'DELETE'
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 
   updateAvatar(avatar){
@@ -84,6 +77,5 @@ export default class Api {
       body: JSON.stringify(avatar)
     })
       .then(res => this._parseResponse(res))
-      .catch(err => Promise.reject(err));
   }
 }

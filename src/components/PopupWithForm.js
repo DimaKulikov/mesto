@@ -12,9 +12,9 @@ export default class PopupWithForm extends Popup{
     this._data = {};
   }
 
-  close(){
-    super.close()
+  close() {
     this._form.reset()
+    super.close()
   }
 
   getInputValues(){    

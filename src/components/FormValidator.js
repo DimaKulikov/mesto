@@ -59,10 +59,12 @@ export default class FormValidator {
     })
     this._form.addEventListener('submit', (e) => { this._submitHandler(e) });
     this._form.addEventListener('reset', () => {
+      setTimeout(() => {
       this._toggleButtonState();
       this._inputList.forEach((inputElement) => {
         this._hideInputError(inputElement)
       })
+      }, 0)
     })
   }
 

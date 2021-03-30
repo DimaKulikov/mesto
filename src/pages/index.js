@@ -9,6 +9,7 @@ import PopupWithForm from '../components/PopupWithForm'
 import PopupWithConfirm from '../components/PopupWithConfirm'
 import UserInfo from '../components/UserInfo'
 import Api from '../components/Api'
+import Spinner from '../components/Spinner'
 
 /**
  * Import constants
@@ -41,6 +42,12 @@ profileEditValidator.enableValidation()
 placeAddValidator.enableValidation()
 avatarEditValidator.enableValidation()
 
+/**
+ * Spinner
+ */
+const cardSectionSpinner = new Spinner('.cards__spinner', '#spinner')
+cardSectionSpinner.init()
+cardSectionSpinner.isLoading(true)
 
 
 /**
@@ -90,6 +97,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()]).then(res => {
   userInfo.updateUserData(userData)
   cardsList.renderItems(cardsArray.reverse())
 }).catch(err => console.error('Ошибка получения карточек и данных пользователя: ', err))
+  .finally(() => cardSectionSpinner.isLoading(false))
 
 
 
@@ -223,7 +231,7 @@ function deleteCardHandler(card) {
 }
 
 function cardLikeHandler(card){
-  const action = card.isLiked() ? api.deleteLike : api.putLike
+  const action = card.getIsLiked() ? api.deleteLike : api.putLike
   action(card.id)
     .then((resp) => {
       card.updateLike(resp)

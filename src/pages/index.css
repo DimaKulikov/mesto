@@ -36,6 +36,7 @@
 
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__list/cards__list.css);
+@import url(../blocks/cards/__spinner/cards__spinner.css);
 
 /* Card */
 
@@ -75,3 +76,7 @@
 @import url(../blocks/form/__error/_active/form__error_active.css);
 @import url(../blocks/form/__submit/form__submit.css);
 @import url(../blocks/form/__submit/_disabled/form__submit_disabled.css);
+
+/* Spinner */
+
+@import url(../blocks/spinner/spinner.css);

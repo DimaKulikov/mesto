@@ -6,8 +6,7 @@ export default class Spinner {
 
   _getTemplate() {
     const template = document.querySelector(this._templateSelector).content.cloneNode(true)
-    const element = template
-    return element
+    return template
   }
 
   isLoading(isLoading) {
